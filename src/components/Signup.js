@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { firebaseApp, userRef } from '../firebase';
+import { registerUser } from '../helpers/auth';
 
 class Signup extends Component {
   constructor(props) {
@@ -23,12 +23,7 @@ class Signup extends Component {
     e.preventDefault();
     const { email, password, confirmPassword } = this.state;
     if (this.confirmPassword(password, confirmPassword)) {
-      firebaseApp.auth().createUserWithEmailAndPassword(email, password)
-        .then(user => {
-          // saving user to  - uid as key
-          const { uid, email } = user;
-          userRef.child(uid).set({ email });
-        })
+      registerUser(email, password)
         .catch(error => this.setState({ error })); 
     } else {
       this.setState({
