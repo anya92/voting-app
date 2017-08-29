@@ -13,6 +13,7 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../styles/styles.css';
 
 import { PrivateRoute, PublicRoute } from '../helpers/routesTypes';
+import NavbarComponent from './NavbarComponent';
 import Login from './Login';
 import Signup from './Signup';
 
@@ -29,10 +30,11 @@ class App extends Component {
   componentDidMount() {
     this.authUser = firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ authed: true, loading: false, user: user.uid });
+        this.setState({ authed: true, loading: false, user: user.email });
       } else {
         this.setState({
           authed: false,
+          loading: false,
           user: null
         });
       }
@@ -46,11 +48,16 @@ class App extends Component {
   render() {
     return this.state.loading ? <div>Ładowanie</div> : (
       <Router>
-        <Switch>
-          <Route exact path='/' render={() => <h1>Voting App {this.state.user && this.state.user}</h1>} />
-          <Route path="/login" component={Login} />  
-          <Route path="/signup" component={Signup} />
-        </Switch>
+        <div>
+          <NavbarComponent user={this.state.user} />
+          <div className="container">
+            <Switch>
+              <Route exact path='/' render={() => <h1>Voting App</h1>} />
+              <Route path="/login" component={Login} />  
+              <Route path="/signup" component={Signup} />
+            </Switch>
+          </div>
+        </div>
       </Router>
     );
   }

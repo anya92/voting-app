@@ -90,9 +90,9 @@ class Login extends Component {
         {
           this.state.renderResetPassword 
           ? this.renderResetPassword()
-          : (
-              <button onClick={() => this.setState({ renderResetPassword: true })}>Zapomniałeś hasła?</button>
-            )
+          : <button onClick={() => this.setState({ renderResetPassword: true })}>
+              Zapomniałeś hasła?
+            </button>
         }
       </div>
     );
