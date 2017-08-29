@@ -11,10 +11,9 @@ class Login extends Component {
       error: {
         message: ''
       },
-      reset: {
-        message: '',
-        error: ''
-      }
+      renderResetPassword: false,
+      resetEmail: '',
+      reset: {}
     };
   }
 
@@ -25,27 +24,43 @@ class Login extends Component {
       .catch(error => this.setState({ error }));
   }
 
-  resetPassword = () => {
-    sendReset()
-      .then(() => 
-        this.setState({ 
-          reset: {
-            message: 'Email został wysłany. Sprawdź swoją pocztę.'
-          }
-        })
-      )
-      .catch(error => 
-        this.setState({
-          reset: {
-            error: error.message
-          }
-        })
-      );
+  resetPassword = e => {
+    e.preventDefault();
+
+    const email = this.state.resetEmail;
+    sendReset(email)
+      .then(() => this.setState({ reset: { message: 'Email został wysłany. Sprawdź swoją pocztę.' } }))
+      .catch(error => this.setState({ reset: { error: error.message } }));
+  }
+
+  renderResetPassword = () => {
+    return (
+      <div>
+        <div onClick={() => this.setState({ renderResetPassword: false })}>&#x2715;</div>
+        <form onSubmit={e => this.resetPassword(e)}>
+          <div>
+            <label htmlFor="forgot-email">
+              Nie pamiętasz hasła? Podaj swój adres e-mail.<br/>
+              Zostanie wysłany na niego link do zmiany hasła. 
+            </label>
+            <input 
+              type="email"
+              name="forgot-email"
+              value={this.state.resetEmail}
+              onChange={e => this.setState({ resetEmail: e.target.value })}
+            />
+          </div>
+          <button type="submit">Wyślij</button>
+          { this.state.reset.message || this.state.reset.error }
+        </form>
+      </div>
+    );
   }
 
   render() {
     return (
       <div>
+        <h1>Zaloguj się</h1>
         <form onSubmit={e => this.signin(e)}>
           <div>
             { this.state.error.message }
@@ -72,6 +87,13 @@ class Login extends Component {
             Zaloguj się
           </button>
         </form>
+        {
+          this.state.renderResetPassword 
+          ? this.renderResetPassword()
+          : (
+              <button onClick={() => this.setState({ renderResetPassword: true })}>Zapomniałeś hasła?</button>
+            )
+        }
       </div>
     );
   }
