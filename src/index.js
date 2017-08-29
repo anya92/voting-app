@@ -1,11 +1,36 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
+import loggerMiddleware from 'redux-logger';
+import createHistory from 'history/createBrowserHistory';
+import { routerMiddleware as createRouterMiddleware, ConnectedRouter } from 'react-router-redux';
+
+import App from './components/App';
+import reducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
-import '../node_modules/normalize.css/normalize.css';
-import '../node_modules/bootstrap/dist/css/bootstrap.css';
-import './styles/styles.css';
+const history = createHistory();
+const routerMiddleware = createRouterMiddleware(history);
 
-render(<p>Voting App</p>, document.getElementById('root'));
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(
+    thunkMiddleware,
+    routerMiddleware,
+    loggerMiddleware
+  )
+);
+
+render( 
+  <Provider store={store}>
+    {/*<ConnectedRouter history={history}>*/}
+      <App />
+    {/*</ConnectedRouter>*/}
+  </Provider>,
+  document.getElementById('root')
+);
 
 registerServiceWorker();
