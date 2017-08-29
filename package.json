@@ -2,12 +2,15 @@
   "name": "voting-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://anya92.github.io/voting-app",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "chart.js": "^2.6.0",
     "firebase": "^4.3.0",
+    "gh-pages": "^1.0.0",
     "history": "^4.7.2",
     "moment": "^2.18.1",
+    "normalize.css": "^7.0.0",
     "react": "^15.6.1",
     "react-chartjs-2": "^2.6.1",
     "react-dom": "^15.6.1",
@@ -19,8 +22,7 @@
     "react-share": "^1.15.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0",
-    "surge": "^0.19.0"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "build-css": "node-sass src/styles -o src/styles",
@@ -28,6 +30,8 @@
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

@@ -1,6 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-##User Stories:
+https://anya92.github.io/voting-app/
+
+## User Stories:
 
 1. As an authenticated user, I can keep my polls and come back later to access them. // TODO
 
@@ -16,4 +18,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 7. As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.) // TODO
 
-8.User Story: As an authenticated user, if I don't like the options on a poll, I can create a new option. // TODO
+8. User Story: As an authenticated user, if I don't like the options on a poll, I can create a new option. // TODO
