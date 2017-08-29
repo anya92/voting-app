@@ -11,12 +11,17 @@ import '../../node_modules/normalize.css/normalize.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../styles/styles.css';
 
+import { PrivateRoute, PublicRoute } from './routesTypes';
+import Signup from './Signup';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Route exact path='/' render={() => <h1>Voting App</h1>} />
+        <Switch>
+          <Route exact path='/' render={() => <h1>Voting App</h1>} />
+          <Route path="/signup" component={Signup} />
+        </Switch>
       </Router>
     );
   }
