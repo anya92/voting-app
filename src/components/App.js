@@ -32,7 +32,16 @@ class App extends Component {
   componentDidMount() {
     this.authUser = firebaseApp.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ authed: true, loading: false, user: user.email });
+        this.setState({ 
+          authed: true, 
+          loading: false, 
+          user: {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL
+          } 
+        });
       } else {
         this.setState({
           authed: false,
@@ -57,7 +66,7 @@ class App extends Component {
               <Route exact path='/' render={() => <h1>Voting App</h1>} />
               <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
-              <PrivateRoute authed={this.state.authed} path="/profile" component={Profile} />
+              <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
             </Switch>
           </div>
         </div>

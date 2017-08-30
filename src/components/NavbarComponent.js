@@ -4,7 +4,6 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { signOut } from '../helpers/auth';
 
 const NavbarComponent = ({ user }) => {
-  console.log('nav', user)
   return (
     <div>
       <Navbar collapseOnSelect fixedTop>
@@ -28,16 +27,16 @@ const NavbarComponent = ({ user }) => {
             ? (
                 <Nav pullRight>
                   <NavDropdown title={user.displayName || user.email || user} id="basic-nav-dropdown">
-                    <LinkContainer to="/profil">
+                    <LinkContainer to="/profile">
                       <MenuItem>Twój profil</MenuItem>
                     </LinkContainer>
-                    <LinkContainer to="/ustawienia">
+                    <LinkContainer to="/settings">
                       <MenuItem>Ustawienia</MenuItem>
                     </LinkContainer>
                     <MenuItem divider />
                     <MenuItem onClick={() => signOut()}>Wyloguj się</MenuItem>
                   </NavDropdown>
-                  <LinkContainer to="/dodaj">
+                  <LinkContainer to="/add">
                     <NavItem>Dodaj</NavItem>
                   </LinkContainer>
                 </Nav>

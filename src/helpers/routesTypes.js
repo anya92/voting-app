@@ -3,12 +3,12 @@ import { Route, Redirect } from 'react-router-dom';
 
 // https://github.com/tylermcginnis/react-router-firebase-auth
 
-export function PrivateRoute({ component: Component, authed, ...rest }) {
+export function PrivateRoute({ component: Component, authed, user,...rest }) {
   return (
     <Route 
       {...rest}
       render={(props) => authed === true
-        ? <Component {...props} />
+        ? <Component {...props} user={user}/>
         : <Redirect to={{ pathname: '/login', state: { from: props.location }}} /> 
       }
     />
