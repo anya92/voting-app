@@ -72,7 +72,7 @@ class App extends Component {
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
-              <Route exact path='/polls/:key' component={SinglePoll} />  
+              <Route path='/polls/:key' render={({ match }) => <SinglePoll pollKey={match.params.key} user={this.state.user} />} />  
             </Switch>
           </div>
         </div>

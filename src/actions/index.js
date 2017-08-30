@@ -36,13 +36,21 @@ export function getSinglePoll(key) {
 
     let singlePoll = {};
     pollRef.child(key).once('value', snap => {
+      // when key is invalid
+      if (!snap.val()) {
+        dispatch({ type: GET_SINGLE_POLL_ERROR, error: 'Not Found.' });
+        return;
+      }
+
       singlePoll = snap.val();
       singlePoll.key = snap.key;
 
-      userRef.child(singlePoll.author).once('value', snap => {
+      userRef.child(singlePoll.author).once('value').then(snap => {
+        dispatch({ type: GET_SINGLE_POLL_ERROR, error: null });
         dispatch({ type: GET_SINGLE_POLL_LOADING, loading: false });
-        
+
         const { displayName, email, photoURL } = snap.val();
+
         singlePoll.author = { displayName, photoURL, email };
         dispatch({ type: GET_SINGLE_POLL_SUCCESS, singlePoll });
       }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error }));
