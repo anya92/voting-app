@@ -16,6 +16,7 @@ import { PrivateRoute, PublicRoute } from '../helpers/routesTypes';
 import NavbarComponent from './NavbarComponent';
 import Login from './Login';
 import Signup from './Signup';
+import Home from './Home';
 
 import Profile from './protected/Profile';
 
@@ -25,7 +26,8 @@ class App extends Component {
   
     this.state = {
       authed: false,
-      loading: true, user: null
+      loading: true, 
+      user: null
     };
   }
 
@@ -63,7 +65,7 @@ class App extends Component {
           <NavbarComponent user={this.state.user} />
           <div className="container">
             <Switch>
-              <Route exact path='/' render={() => <h1>Voting App</h1>} />
+              <Route exact path='/' component={Home} />
               <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />

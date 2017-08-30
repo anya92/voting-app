@@ -5,30 +5,30 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import loggerMiddleware from 'redux-logger';
 import createHistory from 'history/createBrowserHistory';
-import { routerMiddleware as createRouterMiddleware, ConnectedRouter } from 'react-router-redux';
+import { routerMiddleware, ConnectedRouter } from 'react-router-redux';
 
 import App from './components/App';
 import reducer from './reducers';
 import registerServiceWorker from './registerServiceWorker';
 
 const history = createHistory();
-const routerMiddleware = createRouterMiddleware(history);
+const middleware = routerMiddleware(history);
 
 const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(
     thunkMiddleware,
-    routerMiddleware,
+    middleware,
     loggerMiddleware
   )
 );
 
 render( 
   <Provider store={store}>
-    {/*<ConnectedRouter history={history}>*/}
+    <ConnectedRouter history={history}>
       <App />
-    {/*</ConnectedRouter>*/}
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
