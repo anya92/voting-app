@@ -44,14 +44,14 @@ export function getSinglePoll(key) {
 
       singlePoll = snap.val();
       singlePoll.key = snap.key;
-
-      userRef.child(singlePoll.author).once('value').then(snap => {
+      const uid = singlePoll.author;
+      userRef.child(uid).once('value').then(snap => {
         dispatch({ type: GET_SINGLE_POLL_ERROR, error: null });
         dispatch({ type: GET_SINGLE_POLL_LOADING, loading: false });
 
         const { displayName, email, photoURL } = snap.val();
 
-        singlePoll.author = { displayName, photoURL, email };
+        singlePoll.author = { displayName, photoURL, email, uid };
         dispatch({ type: GET_SINGLE_POLL_SUCCESS, singlePoll });
       }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error }));
     }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error }));

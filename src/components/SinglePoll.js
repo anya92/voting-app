@@ -24,10 +24,27 @@ class SinglePoll extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const oldKey = this.props.pollKey;
-    const newKey = nextProps.pollKey;
-    if (oldKey !== newKey) {
-      this.props.getSinglePoll(newKey);
+    const key = this.props.pollKey;
+
+    if (this.props.pollKey !== nextProps.pollKey) {
+      this.props.getSinglePoll(nextProps.pollKey);
+    }
+
+    // check if user is this poll's author
+    const checkIfIsAuthor = (nextProps.user && nextProps.poll) && nextProps.user.uid === nextProps.poll.author.uid; 
+    this.setState({ isAuthor: Boolean(checkIfIsAuthor) });
+    
+    // check if user has already voted
+    // voted polls keys in localStorage
+    const votedPolls = JSON.parse(localStorage.getItem('votedPolls')) || [];
+    if (votedPolls.includes(key)) {
+      this.setState({
+        alreadyVoted: true
+      });
+    } 
+    if (nextProps.user && nextProps.poll) {
+      let voters = nextProps.poll.voters || [];
+      this.setState({ alreadyVoted: voters.includes(nextProps.user.uid) });
     }
   }
 
@@ -57,9 +74,9 @@ class SinglePoll extends Component {
 
   render() {
     if (this.props.error) return <div>Sorry! There was an error loading the item.</div>;
-    if (this.props.loading) return <div>Loading...</div>;
+    // if (this.props.loading) return <div>Loading...</div>;
     const { poll } = this.props;
-    return !Object.keys(poll).length ? <div>Loading...</div> : (
+    return !poll ? <div>Loading...</div> : (
       <div>
         <div>
           <h1>{ poll.title }</h1>

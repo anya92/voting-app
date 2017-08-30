@@ -4,7 +4,7 @@ import {
   GET_SINGLE_POLL_ERROR
 } from '../actions/actionTypes';
 
-export const singlePoll = (state = [], action) => {
+export const singlePoll = (state = null, action) => {
   switch (action.type) {
     case GET_SINGLE_POLL_SUCCESS:
       const { singlePoll } = action;
