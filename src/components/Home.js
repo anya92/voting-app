@@ -11,8 +11,8 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.errorPolls) return <div>Sorry! There was an error loading the items.</div>
-    if (this.props.loadingPolls) return <div>Loading...</div>
+    if (this.props.error) return <div>Sorry! There was an error loading the items.</div>
+    if (this.props.loading) return <div>Loading...</div>
     return (
       <div>
         <pre>{ JSON.stringify(this.props.polls, null, ' ') }</pre>
@@ -22,11 +22,11 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  const { errorPolls, loadingPolls, polls } = state;
+  const { polls, loadingPolls, errorPolls } = state;
   return {
-    errorPolls,
-    loadingPolls,
-    polls
+    polls,
+    loading: loadingPolls,
+    error: errorPolls
   }
 }
 

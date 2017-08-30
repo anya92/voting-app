@@ -12,7 +12,7 @@ https://anya92.github.io/voting-app/
 
 4. As an authenticated user, I can delete polls that I decide I don't want anymore. // TODO
 
-5. As an authenticated user, I can create a poll with any number of possible items. // TODO
+5. As an authenticated user, I can create a poll with any number of possible items. ✔
 
 6. As an unauthenticated or authenticated user, I can see and vote on everyone's polls. // TODO
 

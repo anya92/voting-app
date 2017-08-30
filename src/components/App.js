@@ -4,8 +4,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { getAllPolls } from '../actions';
 import { firebaseApp } from '../firebase';
 
 // import style files
@@ -18,6 +16,7 @@ import NavbarComponent from './NavbarComponent';
 import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
+import SinglePoll from './SinglePoll';
 
 import Profile from './protected/Profile';
 import Add from './protected/Add';
@@ -73,6 +72,7 @@ class App extends Component {
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
+              <Route exact path='/polls/:key' component={SinglePoll} />  
             </Switch>
           </div>
         </div>
@@ -81,4 +81,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { getAllPolls })(App);
+export default App;
