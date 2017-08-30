@@ -17,6 +17,8 @@ import NavbarComponent from './NavbarComponent';
 import Login from './Login';
 import Signup from './Signup';
 
+import Profile from './protected/Profile';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -53,8 +55,9 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path='/' render={() => <h1>Voting App</h1>} />
-              <Route path="/login" component={Login} />  
-              <Route path="/signup" component={Signup} />
+              <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
+              <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
+              <PrivateRoute authed={this.state.authed} path="/profile" component={Profile} />
             </Switch>
           </div>
         </div>
