@@ -5,6 +5,7 @@ import { getSinglePoll } from '../actions';
 import { updatePoll } from '../helpers/polls';
 
 import Vote from './Vote';
+import Share from './Share';
 
 require('moment/locale/pl');
 moment.locale('pl');
@@ -95,6 +96,13 @@ class SinglePoll extends Component {
             !this.state.alreadyVoted
             ? <Vote poll={poll} user={this.props.user} vote={this.vote} />
             : <div>chart</div>
+          }
+        </div>
+        <div>
+          {
+            this.state.isAuthor
+            ? <Share title={poll.title} />
+            : <div></div>
           }
         </div>
       </div>

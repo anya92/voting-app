@@ -1,0 +1,71 @@
+.share-buttons 
+  position: fixed
+  bottom: 20px
+  right: 20px
+  img 
+    width: 60px
+    height: 60px
+    cursor: pointer
+  
+.share 
+  position: relative
+  z-index: 4
+  transition: transform 0.3s
+  &.turn 
+    transform: rotate(180deg)
+
+img.social 
+  position: absolute
+  top: 0px
+  left: 0px
+
+@mixin showIcon($name, $left, $top) 
+  @keyframes #{$name} 
+    from 
+      left: 0px
+      top: 0px
+      transform: scale(0)  
+    to 
+      left: $left
+      top: $top
+      transform: scale(1)
+
+@mixin hideIcon($name, $left, $top) 
+  @keyframes #{$name} 
+    from 
+      left: $left
+      top: $top
+      transform: scale(1)    
+    to 
+      left: 0px
+      top: 0px
+      transform: scale(0.5)
+  
+$duration: 0.4s
+$timing-show: cubic-bezier(0.5, -0.75, 0.7, 2)
+$timing-hide: cubic-bezier(0.5, -0.75, 0.7, 2)
+$fill-mode: forwards
+
+@mixin animate($name, $delay, $timing-function) 
+  animation: 
+    name: $name
+    duration: $duration
+    delay: $delay
+    timing-function: $timing-function
+    fill-mode: $fill-mode
+
+$social-list: facebook twitter whatsapp google-plus
+$left-position-list: -120px -104px -60px 0px
+$top-position-list: 0px -60px -104px -120px
+$delay-list: 0s, 0.1s, 0.2s, 0.3s
+$delay-reverse-list: 0.3s, 0.2s, 0.1s, 0s
+
+@each $social in $social-list 
+  $i: index($social-list, $social)
+  @include showIcon(show-#{$social}, nth($left-position-list, $i), nth($top-position-list, $i))
+  @include hideIcon(hide-#{$social}, nth($left-position-list, $i), nth($top-position-list, $i))
+  .#{$social} 
+    &.show-icon  
+      @include animate(show-#{$social}, nth($delay-list, $i), $timing-show) 
+    &.hide-icon  
+      @include animate(hide-#{$social}, nth($delay-reverse-list, $i), $timing-hide) 
