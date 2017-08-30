@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import {
   HashRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getAllPolls } from '../actions';
 import { firebaseApp } from '../firebase';
 
 // import style files
@@ -19,6 +20,7 @@ import Signup from './Signup';
 import Home from './Home';
 
 import Profile from './protected/Profile';
+import Add from './protected/Add';
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +53,8 @@ class App extends Component {
           user: null
         });
       }
-    })
+    });
+    // this.props.getAllPolls();
   }
 
   componentWillUnmount() {
@@ -69,6 +72,7 @@ class App extends Component {
               <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
+              <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
             </Switch>
           </div>
         </div>
@@ -77,4 +81,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { getAllPolls })(App);

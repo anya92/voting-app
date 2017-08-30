@@ -5,7 +5,9 @@ import { getAllPolls } from '../actions';
 class Home extends Component {
   
   componentDidMount() {
-    this.props.getAllPolls();
+    if (!this.props.polls.length) {
+      this.props.getAllPolls();
+    }  
   }
 
   render() {
