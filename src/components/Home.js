@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getAllPolls } from '../actions';
 
 class Home extends Component {
@@ -15,7 +16,16 @@ class Home extends Component {
     if (this.props.loading) return <div>Loading...</div>
     return (
       <div>
-        <pre>{ JSON.stringify(this.props.polls, null, ' ') }</pre>
+        {
+          this.props.polls.map(poll => {
+            return (
+              <div key={poll.key}>
+                <Link to={`/polls/${poll.key}`}>{poll.title}</Link>
+              </div>
+            )
+          })
+        }
+        {/*<pre>{ JSON.stringify(this.props.polls, null, ' ') }</pre>*/}
       </div>
     );
   }

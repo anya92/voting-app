@@ -35,7 +35,7 @@ export function getSinglePoll(key) {
     dispatch({ type: GET_SINGLE_POLL_LOADING, loading: true });
 
     let singlePoll = {};
-    pollRef.child(key).once('value', snap => {
+    pollRef.child(key).on('value', snap => {
       // when key is invalid
       if (!snap.val()) {
         dispatch({ type: GET_SINGLE_POLL_ERROR, error: 'Not Found.' });

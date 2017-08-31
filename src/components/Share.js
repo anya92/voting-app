@@ -36,7 +36,7 @@ const Share = ({ title }) => {
   return (
     <div className="share-buttons">
       <img src={shareIcon} alt="share" className="share" onClick={() => shareButton()}/>
-      <FacebookShareButton title={`Oddaj głos w moim głosowaniu! "${title}"`} url={document.URL}>
+      <FacebookShareButton quote={`Oddaj głos w moim głosowaniu! "${title}"`} url={document.URL}>
         <img src={FacebookIcon} alt="Facebook" className="social facebook"  />
       </FacebookShareButton>
       <TwitterShareButton title={`Oddaj głos w moim głosowaniu! "${title}"`} url={document.URL} hashtags={["VApp"]}>

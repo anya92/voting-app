@@ -4,6 +4,7 @@ import moment from 'moment';
 import { getSinglePoll } from '../actions';
 import { updatePoll } from '../helpers/polls';
 
+import Chart from './Chart';
 import Vote from './Vote';
 import Share from './Share';
 
@@ -75,7 +76,7 @@ class SinglePoll extends Component {
 
   render() {
     if (this.props.error) return <div>Sorry! There was an error loading the item.</div>;
-    // if (this.props.loading) return <div>Loading...</div>;
+    if (this.props.loading) return <div>Loading...</div>;
     const { poll } = this.props;
     return !poll ? <div>Loading...</div> : (
       <div>
@@ -95,7 +96,7 @@ class SinglePoll extends Component {
           {
             !this.state.alreadyVoted
             ? <Vote poll={poll} user={this.props.user} vote={this.vote} />
-            : <div>chart</div>
+            : <Chart poll={poll} />
           }
         </div>
         <div>
