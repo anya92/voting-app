@@ -19,6 +19,7 @@ import Home from './Home';
 import SinglePoll from './SinglePoll';
 
 import Profile from './protected/Profile';
+import Settings from './protected/Settings';
 import Add from './protected/Add';
 
 class App extends Component {
@@ -71,6 +72,7 @@ class App extends Component {
               <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
+              <PrivateRoute authed={this.state.authed} path="/settings" user={this.state.user} component={Settings} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
               <Route path='/polls/:key' render={({ match }) => <SinglePoll pollKey={match.params.key} user={this.state.user} />} />  
             </Switch>
