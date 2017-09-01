@@ -14,8 +14,8 @@ https://anya92.github.io/voting-app/
 
 5. As an authenticated user, I can create a poll with any number of possible items. ✔
 
-6. As an unauthenticated or authenticated user, I can see and vote on everyone's polls. // TODO
+6. As an unauthenticated or authenticated user, I can see and vote on everyone's polls. ✔
 
-7. As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.) // TODO
+7. As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.) ✔
 
 8. User Story: As an authenticated user, if I don't like the options on a poll, I can create a new option. ✔

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Doughnut } from 'react-chartjs-2';
 import { HorizontalBar } from 'react-chartjs-2';
-import '../../node_modules/chart.piecelabel.js/src/Chart.PieceLabel.js';
+
+const backgroundColor = ["#17BEBB", "#EE6352", "#59CD90", "#F7F06D", "#B33F62", "#2274A5"];
 
 class Chart extends Component {
   constructor(props) {
@@ -42,49 +42,34 @@ class Chart extends Component {
       datasets: [
         {
           label: "głosów",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+          backgroundColor,
           data
         }
       ]
     };
-    const doughnutOptions = {
-      legend: {
-        display: false
-      },
-      responsive: true,
-      maintainAspectRatio: false,
-      pieceLabel: {
-        render: 'label',
-        fontColor: 'white',
-        fontFamily: 'Roboto',
-        fontSize: 14,
-        overlap: true
-      },
-      title: {
-        display: true,
-        text: title
-      }
-    };
-    const barOptions = {
+    const options = {
       legend: { display: false },
+      responsive: true,
       title: {
         display: true,
         text: title
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            beginAtZero: true,
+            fixedStepSize: 1
+          }
+        }]
       }
     };
     return (
       <div>
         <HorizontalBar
           data={chartData}
-          options={barOptions}
-          width={600}
-          height={400}
-        />
-        <Doughnut 
-          data={chartData}
-          options={doughnutOptions}
-          width={800}
-          height={450}
+          options={options}
+          width={400}
+          height={300}
         />
       </div>
     );
