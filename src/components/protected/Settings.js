@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { updateUser, changeEmail } from '../../helpers/user';
+import { updateUser, changeEmail, changePassword } from '../../helpers/user';
 
 class Settings extends Component {
   constructor(props) {
@@ -9,8 +9,12 @@ class Settings extends Component {
       email: '',
       displayName: '',
       photoURL: '',
+      providedPassword: '',
+      newPassword: '',
       successEmail: '',
-      errorEmail: ''
+      errorEmail: '',
+      successPassword: '',
+      errorPassword: ''
     };
   }
 
@@ -35,6 +39,15 @@ class Settings extends Component {
       .catch(error => this.setState({ errorEmail: error }));
   }
 
+  changePassword = e => {
+    e.preventDefault();
+
+    const { email, providedPassword, newPassword } = this.state;
+    changePassword(email, providedPassword, newPassword)
+      .then(message => this.setState({ successPassword: message, errorPassword: '' }))
+      .catch(error => this.setState({ errorPassword: error }));
+  }
+
   render() {
     return (
       <div>
@@ -44,7 +57,7 @@ class Settings extends Component {
         <div>
           <img src={this.state.photoURL} alt={this.state.displayName} />
         </div>
-        <div>
+        <div> {/* Update User Profile Form */}
           <form onSubmit={e => this.updateUser(e)}>
             <fieldset>
               <legend>Twoje dane</legend>
@@ -70,7 +83,7 @@ class Settings extends Component {
             </fieldset>
           </form>
         </div>
-        <div>
+        <div> {/* Change Email Form */}
           <form onSubmit={e => this.changeEmail(e)}>
             <fieldset>
               <legend>Zmiana adresu e-mail</legend>
@@ -93,6 +106,35 @@ class Settings extends Component {
                   type="password"
                   name="provided-password"
                   onChange={e => this.setState({ providedPassword: e.target.value })}
+                />
+              </div>
+              <button type="submit">Zapisz</button>
+            </fieldset>
+          </form>
+        </div>
+        <div> {/* Change Password Form */}
+          <form onSubmit={e => this.changePassword(e)}>
+            <fieldset>
+              <legend>Zmiana hasła</legend>
+              <div>
+                By zmienić hasło, podaj obecne hasło, a następnie wpisz nowe.
+              </div>
+              <div>{this.state.successPassword}</div>
+              <div>{this.state.errorPassword}</div>
+              <div>
+                <label htmlFor="old-password">Obecne hasło</label>
+                <input 
+                  type="password"
+                  name="old-password"
+                  onChange={e => this.setState({ providedPassword: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="new-password">Nowe hasło</label>
+                <input 
+                  type="password"
+                  name="new-password"
+                  onChange={e => this.setState({ newPassword: e.target.value })}
                 />
               </div>
               <button type="submit">Zapisz</button>
