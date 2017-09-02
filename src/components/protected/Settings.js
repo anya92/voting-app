@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { updateUser } from '../../helpers/user';
+import { updateUser, changeEmail } from '../../helpers/user';
 
 class Settings extends Component {
   constructor(props) {
@@ -8,7 +8,9 @@ class Settings extends Component {
     this.state = {
       email: '',
       displayName: '',
-      photoURL: ''
+      photoURL: '',
+      successEmail: '',
+      errorEmail: ''
     };
   }
 
@@ -22,6 +24,15 @@ class Settings extends Component {
 
     const { displayName, photoURL } = this.state;
     updateUser(displayName, photoURL);
+  }
+
+  changeEmail = e => {
+    e.preventDefault();
+
+    const { email, providedPassword } = this.state;
+    changeEmail(this.props.user.email, email, providedPassword)
+      .then(message => this.setState({ successEmail: message, errorEmail: '' }))
+      .catch(error => this.setState({ errorEmail: error }));
   }
 
   render() {
@@ -51,8 +62,37 @@ class Settings extends Component {
                 <input 
                   type="text"
                   name="photo"
-                  value={this.state.photoURL}
+                  value={this.state.photoURL || ''}
                   onChange={e => this.setState({ photoURL: e.target.value })}
+                />
+              </div>
+              <button type="submit">Zapisz</button>
+            </fieldset>
+          </form>
+        </div>
+        <div>
+          <form onSubmit={e => this.changeEmail(e)}>
+            <fieldset>
+              <legend>Zmiana adresu e-mail</legend>
+              <div>
+                <div>{this.state.successEmail}</div>
+                <div>{this.state.errorEmail}</div>
+              </div>
+              <div>
+                <label htmlFor="email">Nowy adres e-mail</label>
+                <input 
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={e => this.setState({ email: e.target.value })}
+                />
+              </div>
+              <div>
+                <label htmlFor="provided-password">Hasło</label>
+                <input 
+                  type="password"
+                  name="provided-password"
+                  onChange={e => this.setState({ providedPassword: e.target.value })}
                 />
               </div>
               <button type="submit">Zapisz</button>
