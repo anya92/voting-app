@@ -6,7 +6,8 @@ class Vote extends Component {
   
     this.state = {
       newAnswer: null,
-      selected: ''
+      selected: '',
+      error: ''
     };
   }
 
@@ -17,12 +18,22 @@ class Vote extends Component {
     })
   }
 
+  vote = e => {
+    e.preventDefault();
+    if(!this.state.selected) {
+      this.setState({ error: 'Wybierz jedną z opcji.'});
+      return;
+    }
+    this.props.vote(this.state.selected);
+  }
+
   render() {
     const { answers } = this.props.poll;
     
     return (
       <div>
-        <form onSubmit={e => this.props.vote(e, this.state.selected)}>
+        <div>{this.state.error}</div>
+        <form onSubmit={e => this.vote(e)}>
           {
             Object.keys(answers).map((answer, i) => {
               return (
@@ -30,7 +41,7 @@ class Vote extends Component {
                   <label htmlFor={answer}><span></span>{answer}</label>
                   <input 
                     type="radio"
-                    id="answer"
+                    id={answer}
                     value={answer}
                     checked={this.state.selected === answer}
                     onChange={e => this.setState({ selected: e.target.value })}

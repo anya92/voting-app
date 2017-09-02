@@ -15,21 +15,21 @@ const GooglePlusIcon = require('../icons/google-plus.svg');
 const shareIcon = require('../icons/share.svg');
 
 const shareButton = () => {
-    const share = document.querySelector('.share');
-    const icons = document.querySelectorAll('.social');
-    share.classList.toggle('turn');
-      icons.forEach(icon => {
-        let { classList } = icon;
-        if (classList.contains('hide-icon')) {
-          classList.remove('hide-icon');
-          classList.add('show-icon');
-        } else if (classList.contains('show-icon')) {
-          classList.remove('show-icon');
-          classList.add('hide-icon');
-        } else {
-          classList.add('show-icon');
-        }
-      }); 
+  const share = document.querySelector('.share');
+  const icons = document.querySelectorAll('.social');
+  share.classList.toggle('turn');
+    icons.forEach(icon => {
+      let { classList } = icon;
+      if (classList.contains('hide-icon')) {
+        classList.remove('hide-icon');
+        classList.add('show-icon');
+      } else if (classList.contains('show-icon')) {
+        classList.remove('show-icon');
+        classList.add('hide-icon');
+      } else {
+        classList.add('show-icon');
+      }
+    }); 
   }
 
 const Share = ({ title }) => {

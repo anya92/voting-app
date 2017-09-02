@@ -50,9 +50,7 @@ class SinglePoll extends Component {
     }
   }
 
-  vote = (e, answer) => {
-    e.preventDefault();
-
+  vote = (answer) => {
     let count = this.props.poll.answers[answer] + 1 || 1;
     let { answers, key, numberOfVotes } = this.props.poll;
     let voters = this.props.poll.voters || [];
