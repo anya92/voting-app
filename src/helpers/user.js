@@ -6,12 +6,11 @@ export function updateUser(displayName, photoURL) {
     displayName,
     photoURL
   }).then(() => {
-    // save new data to db
+    // save new user data to db
     const { uid, displayName, photoURL } = user;
     userRef.child(uid).update({
       displayName,
       photoURL
     });
-    user.reload();
   })
 }

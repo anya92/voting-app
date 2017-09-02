@@ -4,7 +4,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
-import { firebaseApp } from '../firebase';
+import { firebaseApp, userRef } from '../firebase';
 
 // import style files
 import '../../node_modules/normalize.css/normalize.css';
@@ -35,17 +35,21 @@ class App extends Component {
 
   componentDidMount() {
     this.authUser = firebaseApp.auth().onAuthStateChanged(user => {
+      this.setState({ loading: true });
       if (user) {
-        this.setState({ 
-          authed: true, 
-          loading: false, 
-          user: {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            photoURL: user.photoURL
-          } 
-        });
+        userRef.child(user.uid).on('value', snap => {
+          const { email, displayName, photoURL } = snap.val();
+          this.setState({
+            user: {
+              uid: user.uid,
+              email,
+              displayName,
+              photoURL
+            },
+            loading: false,
+            authed: true
+          });
+        });        
       } else {
         this.setState({
           authed: false,
@@ -54,7 +58,6 @@ class App extends Component {
         });
       }
     });
-    // this.props.getAllPolls();
   }
 
   componentWillUnmount() {

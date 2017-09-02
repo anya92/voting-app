@@ -16,6 +16,7 @@ export function loginUser(email, password) {
 }
 
 export function sendReset(email) {
+  firebaseApp.auth().useDeviceLanguage();
   return firebaseApp.auth().sendPasswordResetEmail(email);
 }
 

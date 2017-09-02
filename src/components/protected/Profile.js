@@ -8,7 +8,7 @@ class Profile extends Component {
         <h1>Profile</h1>
         <h2>{email}</h2>
         <h2>{displayName}</h2>
-        { photoURL && <img src={photoURL} alt={displayName || email} />}
+        { photoURL && <img src={photoURL} alt={displayName || email} /> }
       </div>
     );
   }

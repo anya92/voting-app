@@ -21,7 +21,7 @@ class Settings extends Component {
     e.preventDefault();
 
     const { displayName, photoURL } = this.state;
-    updateUser(displayName, photoURL).then(user => console.log('user', user));
+    updateUser(displayName, photoURL);
   }
 
   render() {
