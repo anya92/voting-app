@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getUserPolls } from '../../actions';
+import { deletePoll } from '../../helpers/polls';
 
 import UserPolls from './UserPolls';
 
@@ -9,6 +10,15 @@ class Profile extends Component {
     const { uid } = this.props.user;
     this.props.getUserPolls(uid);
   }
+
+  deletePoll = (key, title) => {
+    const confirmDelete = () => {
+      return window.confirm(`Na pewno chcesz usunąć głosowanie "${title}"?`);
+    }
+    if (confirmDelete()) {
+      deletePoll(key);
+    }
+  } 
 
   render() {
     const { email, displayName, photoURL } = this.props.user;
@@ -22,7 +32,12 @@ class Profile extends Component {
           { /*photoURL && <img src={photoURL} alt={displayName || email} />*/ }
         </div>
         <div>
-          <UserPolls polls={this.props.polls} loading={this.props.loading} error={this.props.error} />
+          <UserPolls 
+            polls={this.props.polls} 
+            loading={this.props.loading} 
+            error={this.props.error}
+            deletePoll={this.deletePoll}
+          />
         </div>  
       </div>
     );

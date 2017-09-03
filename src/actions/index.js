@@ -90,7 +90,7 @@ export function getUserPolls(uid) {
   return dispatch => {
     dispatch({ type: GET_USER_POLLS_LOADING, loading: true });
 
-    pollRef.once('value', snaps => {
+    pollRef.on('value', snaps => {
       let userPolls = [];
       snaps.forEach(snap => {
         if (snap.val().author === uid) {
