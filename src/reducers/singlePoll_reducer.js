@@ -24,7 +24,7 @@ export const loadingSinglePoll = (state = false, action) => {
   }
 }
 
-export const errorSinglePoll = (state = null, action) => {
+export const errorSinglePoll = (state = false, action) => {
   switch(action.type) {
     case GET_SINGLE_POLL_ERROR:
       const { error } = action;

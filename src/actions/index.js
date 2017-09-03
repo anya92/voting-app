@@ -4,7 +4,10 @@ import {
   GET_ALL_POLLS_ERROR,
   GET_SINGLE_POLL_LOADING,
   GET_SINGLE_POLL_SUCCESS,
-  GET_SINGLE_POLL_ERROR
+  GET_SINGLE_POLL_ERROR,
+  GET_TOP_POLLS_LOADING,
+  GET_TOP_POLLS_SUCCESS,
+  GET_TOP_POLLS_ERROR
 } from './actionTypes';
 
 import { pollRef, userRef } from '../firebase';
@@ -24,7 +27,7 @@ export function getAllPolls() {
       dispatch({ type: GET_ALL_POLLS_SUCCESS, polls });
     }, error => {
       console.log(error);
-      dispatch({ type: GET_ALL_POLLS_ERROR, error });
+      dispatch({ type: GET_ALL_POLLS_ERROR, error: true });
     }
     );
   }
@@ -38,22 +41,43 @@ export function getSinglePoll(key) {
     pollRef.child(key).on('value', snap => {
       // when key is invalid
       if (!snap.val()) {
-        dispatch({ type: GET_SINGLE_POLL_ERROR, error: 'Not Found.' });
+        dispatch({ type: GET_SINGLE_POLL_ERROR, error: true });
         return;
       }
-
       singlePoll = snap.val();
       singlePoll.key = snap.key;
       const uid = singlePoll.author;
+     
       userRef.child(uid).once('value').then(snap => {
-        dispatch({ type: GET_SINGLE_POLL_ERROR, error: null });
-        dispatch({ type: GET_SINGLE_POLL_LOADING, loading: false });
-
         const { displayName, email, photoURL } = snap.val();
-
         singlePoll.author = { displayName, photoURL, email, uid };
+        
+        dispatch({ type: GET_SINGLE_POLL_ERROR, error: false });
+        dispatch({ type: GET_SINGLE_POLL_LOADING, loading: false });
         dispatch({ type: GET_SINGLE_POLL_SUCCESS, singlePoll });
-      }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error }));
-    }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error }));
+      }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error: true }));
+    }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error: true }));
+  }
+}
+
+export function getTopPolls() {
+  return dispatch => {
+    dispatch({ type: GET_TOP_POLLS_LOADING, loading: true });
+
+    pollRef
+      .orderByChild('numberOfVotes')
+      .limitToLast(10)
+      .once('value')
+      .then(snaps => {
+        let topPolls = [];
+        snaps.forEach(snap => {
+          let { key } = snap;
+          topPolls.push({ ...snap.val(), key });
+        });
+        topPolls.reverse();
+        dispatch({ type: GET_TOP_POLLS_LOADING, loading: false});
+        dispatch({ type: GET_TOP_POLLS_SUCCESS, topPolls });
+      })
+      .catch(error => dispatch({ type: GET_TOP_POLLS_ERROR, error: true }));
   }
 }

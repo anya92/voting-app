@@ -24,7 +24,7 @@ export const loadingPolls = (state = false, action) => {
   }
 }
 
-export const errorPolls = (state = null, action) => {
+export const errorPolls = (state = false, action) => {
   switch(action.type) {
     case GET_ALL_POLLS_ERROR:
       const { error } = action;

@@ -17,6 +17,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
 import SinglePoll from './SinglePoll';
+import TopPolls from './TopPolls';
 
 import Profile from './protected/Profile';
 import Settings from './protected/Settings';
@@ -72,6 +73,7 @@ class App extends Component {
           <div className="container">
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route path='/top' component={TopPolls} />
               <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
               <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
               <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
