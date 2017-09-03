@@ -7,7 +7,10 @@ import {
   GET_SINGLE_POLL_ERROR,
   GET_TOP_POLLS_LOADING,
   GET_TOP_POLLS_SUCCESS,
-  GET_TOP_POLLS_ERROR
+  GET_TOP_POLLS_ERROR,
+  GET_USER_POLLS_LOADING,
+  GET_USER_POLLS_SUCCESS,
+  GET_USER_POLLS_ERROR
 } from './actionTypes';
 
 import { pollRef, userRef } from '../firebase';
@@ -17,13 +20,14 @@ export function getAllPolls() {
     dispatch({ type: GET_ALL_POLLS_LOADING, loading: true });
 
     pollRef.once('value', snaps => {
-      dispatch({ type: GET_ALL_POLLS_LOADING, loading: false });
       let polls = [];
       snaps.forEach(snap => {
         let { key } = snap;
         polls.push({ ...snap.val(), key });
       });
       polls.sort((a, b) => b.created_At - a.created_At);
+
+      dispatch({ type: GET_ALL_POLLS_LOADING, loading: false });
       dispatch({ type: GET_ALL_POLLS_SUCCESS, polls });
     }, error => {
       console.log(error);
@@ -79,5 +83,27 @@ export function getTopPolls() {
         dispatch({ type: GET_TOP_POLLS_SUCCESS, topPolls });
       })
       .catch(error => dispatch({ type: GET_TOP_POLLS_ERROR, error: true }));
+  }
+}
+
+export function getUserPolls(uid) {
+  return dispatch => {
+    dispatch({ type: GET_USER_POLLS_LOADING, loading: true });
+
+    pollRef.once('value', snaps => {
+      let userPolls = [];
+      snaps.forEach(snap => {
+        if (snap.val().author === uid) {
+          let { key } = snap;
+          userPolls.push({ ...snap.val(), key });
+        }
+      });
+      userPolls.sort((a, b) => b.created_At - a.created_At);
+      dispatch({ type: GET_USER_POLLS_LOADING, loading: false });
+      dispatch({ type: GET_USER_POLLS_SUCCESS, userPolls });
+    }, error => {
+      dispatch({ type: GET_USER_POLLS_ERROR, error: true });
+    }
+    );
   }
 }

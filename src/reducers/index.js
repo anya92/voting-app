@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { polls, loadingPolls, errorPolls } from './polls_reducer';
 import { singlePoll, loadingSinglePoll, errorSinglePoll } from './singlePoll_reducer';
 import { topPolls, loadingTopPolls, errorTopPolls } from './topPolls_reducer';
+import { userPolls, loadingUserPolls, errorUserPolls } from './userPolls_reducer';
 
 export default combineReducers({
   polls,
@@ -12,5 +13,8 @@ export default combineReducers({
   errorSinglePoll,
   topPolls,
   loadingTopPolls,
-  errorTopPolls
+  errorTopPolls,
+  userPolls,
+  loadingUserPolls,
+  errorUserPolls
 });
