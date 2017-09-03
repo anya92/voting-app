@@ -28,5 +28,5 @@ export function updatePoll(key, answers, numberOfVotes, voters) {
 }
 
 export function deletePoll(key) {
-  pollRef.child(key).remove();
+    pollRef.child(key).remove();
 }

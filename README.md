@@ -8,9 +8,9 @@ https://anya92.github.io/voting-app/
 
 2. As an authenticated user, I can share my polls with my friends. ✔
 
-3. As an authenticated user, I can see the aggregate results of my polls. // TODO
+3. As an authenticated user, I can see the aggregate results of my polls. ✔
 
-4. As an authenticated user, I can delete polls that I decide I don't want anymore. // TODO
+4. As an authenticated user, I can delete polls that I decide I don't want anymore. ✔
 
 5. As an authenticated user, I can create a poll with any number of possible items. ✔
 

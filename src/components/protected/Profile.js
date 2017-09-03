@@ -4,8 +4,17 @@ import { getUserPolls } from '../../actions';
 import { deletePoll } from '../../helpers/polls';
 
 import UserPolls from './UserPolls';
+import Results from './Results';
 
 class Profile extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      display: 'polls'
+    };
+  }
+
   componentDidMount() {
     const { uid } = this.props.user;
     this.props.getUserPolls(uid);
@@ -32,12 +41,25 @@ class Profile extends Component {
           { /*photoURL && <img src={photoURL} alt={displayName || email} />*/ }
         </div>
         <div>
-          <UserPolls 
-            polls={this.props.polls} 
-            loading={this.props.loading} 
-            error={this.props.error}
-            deletePoll={this.deletePoll}
-          />
+          <div onClick={() => this.setState({ display: 'polls' })}>Twoje głosowania</div>
+          <div onClick={() => this.setState({ display: 'results' })}>Wyniki</div>
+        </div>
+        <div>
+          {
+            this.state.display === 'polls'
+            ? <UserPolls 
+                polls={this.props.polls} 
+                loading={this.props.loading} 
+                error={this.props.error}
+                deletePoll={this.deletePoll}
+              />
+            : <Results 
+                polls={this.props.polls} 
+                loading={this.props.loading} 
+                error={this.props.error}
+              />  
+          }
+          
         </div>  
       </div>
     );
