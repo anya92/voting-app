@@ -6,6 +6,7 @@
     width: calc(50% - 20px)
     float: left
     margin: 10px
+
   @include desktop
     height: 220px
     display: flex
@@ -15,7 +16,6 @@
     background-color: #eee
     
     @include desktop
-      // display: inline-block
       height: 100%
       width: 200px
 
@@ -26,23 +26,66 @@
   
   &__content
     padding: 15px
-
-    @include desktop
-      // display: inline-block
-      position: relative
+    width: 100%
+    position: relative
     
-    &__title //trim title
+    &__title 
       font-size: 1.8rem
       font-weight: 700
-      margin-bottom: 10px
+      margin-bottom: 25px
+
+      @include tablet 
+        text-overflow: ellipsis
+        white-space: nowrap
+        overflow: hidden
+
+      @include desktop
+        text-overflow: clip
+        white-space: normal
+        overflow: visible
       a 
         color: black
+
     &__info
+      position: absolute
+      bottom: 15px
+      left: 15px
       display: flex
       justify-content: space-between
       font-weight: 300
-
+      div:first-child:after
+        content: '•'
+        margin: 0 5px 
       @include desktop
         display: block
         position: absolute
         bottom: 15px
+        width: 100%
+        div:first-child
+          margin-bottom: 5px
+          &:after
+            display: none
+
+      
+    &__delete
+      position: absolute
+      right: 15px
+      bottom: 15px
+      font-size: 2.5rem
+      cursor: pointer
+      i 
+        -webkit-text-stroke: 1px white
+        
+      &__popup
+        display: none
+        border: 1px solid #eee
+        background-color: white
+        box-shadow: 0 1px 2px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
+        padding: 15px
+        font-size: 1.4rem
+        z-index: 3
+        position: absolute 
+        right: -20px
+        white-space: nowrap
+        &.open 
+          display: block

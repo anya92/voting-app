@@ -15,6 +15,9 @@ class TopPolls extends Component {
     if (this.props.loading) return <div>Loading...</div>;
     return (
       <div>
+        <div>
+          10 najpopularniejszych głosowań <hr/>
+        </div>
         {
           this.props.polls.map(poll => {
             return (

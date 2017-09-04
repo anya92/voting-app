@@ -20,6 +20,11 @@ class SinglePoll extends Component {
       isAuthor: false
     };
   }
+
+  componentDidUpdate() {
+    window.scrollTo(0,0);
+  }
+  
   componentDidMount() {
     const key = this.props.pollKey;
     this.props.getSinglePoll(key);

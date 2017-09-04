@@ -9,6 +9,7 @@ import { firebaseApp, userRef } from '../firebase';
 // import style files
 import '../../node_modules/normalize.css/normalize.css';
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '../../node_modules/font-awesome/css/font-awesome.min.css'; 
 import '../styles/styles.css';
 
 import { PrivateRoute, PublicRoute } from '../helpers/routesTypes';

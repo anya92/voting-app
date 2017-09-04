@@ -8,9 +8,7 @@ import Card from './Card';
 class Home extends Component {
   
   componentDidMount() {
-    // if (!this.props.polls.length) {
-      this.props.getAllPolls();
-    // }  
+    this.props.getAllPolls();
   }
 
   render() {
@@ -28,7 +26,6 @@ class Home extends Component {
             )
           })
         }
-        {/*<pre>{ JSON.stringify(this.props.polls, null, ' ') }</pre>*/}
       </div>
     );
   }
