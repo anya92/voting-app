@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getAllPolls } from '../actions';
 
+import Card from './Card';
+
 class Home extends Component {
   
   componentDidMount() {
@@ -19,9 +21,10 @@ class Home extends Component {
         {
           this.props.polls.map(poll => {
             return (
-              <div key={poll.key}>
-                <Link to={`/polls/${poll.key}`}>{poll.title}</Link>
-              </div>
+              <Card 
+                key={poll.key}
+                poll={poll}
+              />
             )
           })
         }

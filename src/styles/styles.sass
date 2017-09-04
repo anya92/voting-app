@@ -1,5 +1,7 @@
 @import "partials/variables"
+@import "partials/mixins"
 @import "partials/share-buttons" 
+@import "partials/card"
 
 body
   font-family: 'Roboto'
@@ -8,3 +10,7 @@ body
 
 img
   max-width: 100%
+
+.container
+  @include desktop
+    max-width: 1000px

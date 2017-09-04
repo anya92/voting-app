@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getTopPolls } from '../actions';
 
+import Card from './Card';
+
 class TopPolls extends Component {
   componentDidMount() {
     this.props.getTopPolls();
@@ -13,7 +15,16 @@ class TopPolls extends Component {
     if (this.props.loading) return <div>Loading...</div>;
     return (
       <div>
-        <pre>{ JSON.stringify(this.props.polls, null, ' ') }</pre>
+        {
+          this.props.polls.map(poll => {
+            return (
+              <Card 
+                key={poll.key}
+                poll={poll}
+              />
+            )
+          })
+        }
       </div>
     );
   }

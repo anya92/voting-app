@@ -1,0 +1,48 @@
+.card
+  border: 1px solid #eee
+  margin: 20px 0
+
+  @include tablet
+    width: calc(50% - 20px)
+    float: left
+    margin: 10px
+  @include desktop
+    height: 220px
+    display: flex
+
+  &__photo
+    height: 170px
+    background-color: #eee
+    
+    @include desktop
+      // display: inline-block
+      height: 100%
+      width: 200px
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+  
+  &__content
+    padding: 15px
+
+    @include desktop
+      // display: inline-block
+      position: relative
+    
+    &__title //trim title
+      font-size: 1.8rem
+      font-weight: 700
+      margin-bottom: 10px
+      a 
+        color: black
+    &__info
+      display: flex
+      justify-content: space-between
+      font-weight: 300
+
+      @include desktop
+        display: block
+        position: absolute
+        bottom: 15px
