@@ -98,7 +98,6 @@ export function getUserPolls(uid) {
           userPolls.push({ ...snap.val(), key });
         }
       });
-      userPolls.sort((a, b) => b.created_At - a.created_At);
       dispatch({ type: GET_USER_POLLS_LOADING, loading: false });
       dispatch({ type: GET_USER_POLLS_SUCCESS, userPolls });
     }, error => {

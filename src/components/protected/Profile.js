@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getUserPolls } from '../../actions';
 import { deletePoll } from '../../helpers/polls';
 
@@ -32,17 +33,32 @@ class Profile extends Component {
   render() {
     const { email, displayName, photoURL } = this.props.user;
     return (
-      <div>
-        <div>
-          <h1>Profile</h1>
-          <h2>{email}</h2>
-          <h2>{displayName}</h2>
-          <h3>{this.props.user.uid}</h3>
-          { /*photoURL && <img src={photoURL} alt={displayName || email} />*/ }
+      <div className="profile">
+        <div className="profile__header">
+          <div className="profile__header__name">
+            {displayName || email}
+          </div>
+          <div className="profile__header__email">
+            {displayName && email}
+          </div>
+          <div className="profile__header__photo">
+            { photoURL && <img src={photoURL} alt={displayName || email} /> }
+          </div>
+          <div className="profile__header__edit">
+            <Link to='/settings'>Edytuj <i className="fa fa-pencil-square-o"></i></Link>
+          </div>
         </div>
-        <div>
-          <div onClick={() => this.setState({ display: 'polls' })}>Twoje głosowania</div>
-          <div onClick={() => this.setState({ display: 'results' })}>Wyniki</div>
+        <div className="profile__menu">
+          <div
+            className={`profile__menu__polls ${this.state.display === 'polls' ? 'active' : ''}`} 
+            onClick={() => this.setState({ display: 'polls' })}>
+            Twoje głosowania ({this.props.polls.length})
+          </div>
+          <div 
+            className={`profile__menu__results ${this.state.display === 'results' ? 'active' : ''}`}
+            onClick={() => this.setState({ display: 'results' })}>
+            Wyniki
+          </div>
         </div>
         <div>
           {
@@ -59,7 +75,6 @@ class Profile extends Component {
                 error={this.props.error}
               />  
           }
-          
         </div>  
       </div>
     );

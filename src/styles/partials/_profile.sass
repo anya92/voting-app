@@ -1,0 +1,46 @@
+.profile
+  &__header
+    padding: 15px 0
+    height: 200px
+    position: relative
+    &__name
+      font-size: 4rem
+      font-weight: 700
+    &__email
+      font-size: 2.5rem
+      font-weight: 400
+    &__photo
+      display: none
+      position: absolute
+      right: 15px
+      top: 15px
+      width: 150px
+      height: 150px
+      border-radius: 50%
+      overflow: hidden
+      @include tablet
+        display: block
+      img
+        height: 100%
+        width: 100%
+        object-fit: cover
+    &__edit
+      position: absolute
+      bottom: 15px
+      font-size: 2rem
+      a
+        color: black
+
+  &__menu
+    margin-bottom: 20px
+    font-size: 2rem
+    border-top: 1px solid #eee
+    div
+      display: inline-block
+      padding: 15px 5px
+      color: grey
+      cursor: pointer
+      margin-right: 10px
+    div.active
+      border-bottom: 2px solid crimson
+      color: black

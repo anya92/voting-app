@@ -7,7 +7,7 @@ const UserPolls = ({ polls, loading, error, deletePoll }) => {
   return (
     <div>
       {
-        polls.map(poll => {
+        polls.sort((a, b) => b.created_At - a.created_At).map(poll => {
           return (
             <Card 
               key={poll.key} 
