@@ -4,6 +4,7 @@ import Card from '../Card';
 const UserPolls = ({ polls, loading, error, deletePoll }) => {
   if (error) return <div>Error</div>;
   if (loading) return <div>Loading</div>;
+  if (!polls.length) return <div>Nie masz jeszcze żadnych głosowań. Dodaj nowe!</div>;
   return (
     <div>
       {

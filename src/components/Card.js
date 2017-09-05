@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import formatText from '../helpers/textFormat';
 
 require('moment/locale/pl');
 moment.locale('pl');
@@ -27,7 +28,7 @@ const Card = ({ poll, deletePoll }) => {
         </div>
         <div className="card__content__info">
           <div>dodano { moment(created_At).fromNow() }</div>
-          <div>{ numberOfVotes } głosów</div>
+          <div>{ formatText(numberOfVotes) }</div>
         </div>
         {
           deletePoll !== undefined 
