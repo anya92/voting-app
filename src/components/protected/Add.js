@@ -12,7 +12,7 @@ const AnswerInput = ({ id, onAnswerChange, removeAnswerInput, value }) => {
       />
     )
   : (
-      <div>
+      <div className="form__input-with-span">
         <input 
           type="text"
           value={value || ''}
@@ -34,7 +34,8 @@ class Add extends Component {
       numberOfAnswers: 2,
       answers: [],
       photoURL: '',
-      error: ''
+      error: '',
+      showPhoto: false
     };
   }
 
@@ -92,51 +93,61 @@ class Add extends Component {
     return (
       <div>
         <div>
-          <h1>Dodaj nowe głosowanie</h1>
-        </div>
-        <div>
           <div>{this.state.error}</div>
-          <form onSubmit={e => this.addNewPoll(e)}>
-            <div>
-              <label htmlFor="title">Pytanie</label>
-              <input 
-                type="text"
-                name="title"
-                value={this.state.title}
-                onChange={e => this.setState({ title: e.target.value })}
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor="photo">Zdjęcie</label>
-              <input 
-                type="text"
-                name="photo"                
-                value={this.state.photoURL}
-                onChange={e => this.setState({ photoURL: e.target.value })}
-              />
-            </div>
-            <div>
-              <label htmlFor="answers">Odpowiedzi</label>
-              {
-                [...Array(this.state.numberOfAnswers).keys()].map(i => {
-                  return (
-                    <AnswerInput
-                      id={i}
-                      key={i}
-                      value={this.state.answers[i]}
-                      onAnswerChange={this.onAnswerChange}
-                      removeAnswerInput={this.removeAnswerInput}
-                    />  
-                  );
-                })
-              }
-            </div>
-            <div onClick={e => this.addAnswerInput(e)}>
-              <span>+</span>
-              <p>Dodaj nową odpowiedź</p>
-            </div>
-            <button type="submit">Dodaj</button>
+          <form onSubmit={e => this.addNewPoll(e)} className="form">
+            <fieldset>
+              <legend>Dodaj nowe głosowanie</legend>
+              <div>
+                <label htmlFor="title">Pytanie</label>
+                <input 
+                  type="text"
+                  name="title"
+                  value={this.state.title}
+                  onChange={e => this.setState({ title: e.target.value })}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="photo">Zdjęcie</label>
+                <div className="form__input-with-span">
+                  <input 
+                    type="text"
+                    name="photo"                
+                    value={this.state.photoURL}
+                    onChange={e => this.setState({ photoURL: e.target.value })}
+                  />
+                  <span 
+                    className="show-photo" 
+                    onClick={() => this.setState({ showPhoto: true})}>
+                      <i className="fa fa-external-link"></i>
+                  </span>
+                </div>
+                <div className={`form__modal-photo ${this.state.showPhoto ? 'open' : ''}`}>
+                  <img src={this.state.photoURL} alt={this.state.title} />
+                  <span onClick={() => this.setState({ showPhoto: false })}>&#x2715;</span>
+                </div> 
+              </div>
+              <div>
+                <label htmlFor="answers">Odpowiedzi</label>
+                {
+                  [...Array(this.state.numberOfAnswers).keys()].map(i => {
+                    return (
+                      <AnswerInput
+                        id={i}
+                        key={i}
+                        value={this.state.answers[i]}
+                        onAnswerChange={this.onAnswerChange}
+                        removeAnswerInput={this.removeAnswerInput}
+                      />  
+                    );
+                  })
+                }
+              </div>
+              <div className="form__add-new-answer" onClick={e => this.addAnswerInput(e)}>
+                + Dodaj nową odpowiedź
+              </div>
+              <button type="submit">DODAJ</button>
+            </fieldset>
           </form>
         </div>
       </div>

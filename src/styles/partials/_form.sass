@@ -1,0 +1,83 @@
+.form
+  padding: 15px
+  font-size: 1.6rem
+
+  @include tablet
+    max-width: 80%
+    margin: 0 auto
+
+  @include desktop
+    max-width: 50%
+
+  label, input
+    display: block
+
+  input
+    padding: 5px
+    width: 100%
+    height: 40px
+    margin-bottom: 10px
+    border: none
+    border-bottom: 1px solid #333
+    &:focus
+      outline: none
+      border-bottom: 2px solid $mainColor
+  
+  legend
+    font-size: 2.3rem
+    // font-weight: 700
+    padding-bottom: 5px
+    border-bottom: 3px double $mainColor
+  button
+    margin-top: 20px
+    width: 100%
+    border: 3px solid $mainColor
+    background-color: transparent
+    color: $mainColor
+    padding: 10px
+    font-size: 2rem
+    letter-spacing: 2px
+    transition: all 0.3s ease
+    &:hover
+      background-color: $mainColor
+      color: white
+
+  &__input-with-span
+    display: flex
+    span
+      font-size: 2rem
+      margin-left: 5px
+      cursor: pointer
+  &__add-new-answer
+    display: flex
+    background-color: #eee
+    padding: 10px
+    cursor: pointer
+
+  &__modal-photo
+    position: fixed
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background-color: rgba(0, 0, 0, 0.8)
+    z-index: 5
+    visibility: hidden
+    opacity: 0
+    transition: all 0.4s ease-out
+    span 
+      position: absolute
+      color: white
+      cursor: pointer
+      top: 60px
+      right: 20px
+      font-size: 3rem
+    img
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%) 
+      max-width: 90% 
+    &.open
+      visibility: visible
+      opacity: 1
