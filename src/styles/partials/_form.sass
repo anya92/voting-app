@@ -79,3 +79,38 @@
     &.open
       visibility: visible
       opacity: 1
+
+  &__radio
+    padding: 5px
+    margin: 4px
+    label 
+      font-size: 1.8rem
+      font-weight: 300
+      cursor: pointer
+    input[type="radio"]
+      display: none
+      & + label span
+        display: inline-block
+        cursor: pointer
+        width: 20px
+        height: 20px
+        margin: 1px 6px 0 0
+        float: left
+        border: 2px solid $mainColor
+        border-radius: 50%
+      &:checked + label span 
+        position: relative
+        &::after
+          content: ' '
+          width: 10px
+          height: 10px
+          border-radius: 50%
+          background-color: $mainColor
+          position: absolute
+          top: 50%
+          left: 50%
+          transform: translate(-50%, -50%)
+    &__new-answer
+      display: flex
+      label span
+        margin: 6px 5px 0 0 !important

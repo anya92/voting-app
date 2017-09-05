@@ -84,10 +84,10 @@ class SinglePoll extends Component {
     return !poll ? <div>Loading...</div> : (
       <div>
         <div>
-          <h1>{ poll.title }</h1>
-        </div>
-        <div>
           { poll.photoURL && <img src={poll.photoURL} alt={poll.title} /> }
+        </div>
+        <div className="title">
+          { poll.title } <hr/>
         </div>
         <div>
           <div>{ poll.author.displayName || poll.author.email }</div>

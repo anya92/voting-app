@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Vote extends Component {
   constructor(props) {
@@ -32,43 +33,52 @@ class Vote extends Component {
     
     return (
       <div>
-        <div>{this.state.error}</div>
-        <form onSubmit={e => this.vote(e)}>
-          {
-            Object.keys(answers).map((answer, i) => {
-              return (
-                <div key={i}>
-                  <label htmlFor={answer}><span></span>{answer}</label>
-                  <input 
-                    type="radio"
-                    id={answer}
-                    value={answer}
-                    checked={this.state.selected === answer}
-                    onChange={e => this.setState({ selected: e.target.value })}
-                    required
-                  />
-                </div>
-              )
-            })
-          }
-          {
-            this.props.user
-            ? (
-                <div>
-                  <label htmlFor="new-answer"><span></span></label>
-                  <input 
-                    type="text"
-                    placeholder="Dodaj nową odpowiedź"
-                    value={this.state.newAnswer === this.state.selected ? this.state.selected : ''}
-                    onChange={e => this.addNewAnswer(e)}
-                  />
-                </div>
-              )
-            : (
-                <div>Zaloguj się, by dodać nową odpowiedź.</div>
-              )
-          }
-          <button type="submit">Zagłosuj</button>
+        <form onSubmit={e => this.vote(e)} className="form">
+          <fieldset>
+            <legend>Zagłosuj</legend>
+            <div className="message message--error">
+              {this.state.error}
+            </div>
+            <div className="form__radio">
+              <div>{this.props.poll.title}</div>
+              {
+                Object.keys(answers).map((answer, i) => {
+                  return (
+                    <div key={i}>
+                      <input 
+                        type="radio"
+                        id={answer}
+                        value={answer}
+                        checked={this.state.selected === answer}
+                        onChange={e => this.setState({ selected: e.target.value })}
+                        required
+                      />
+                      <label htmlFor={answer}><span></span>{answer}</label>
+                    </div>
+                  )
+                })
+              }
+              {
+                this.props.user
+                ? (
+                    <div className="form__radio__new-answer">
+                      <input type="radio" id="newAnswer"  checked={this.state.selected === this.state.newAnswer} required />
+                      <label htmlFor="newAnswer"><span></span></label>
+                      <input 
+                        type="text"
+                        placeholder="Dodaj nową odpowiedź"
+                        value={this.state.newAnswer === this.state.selected ? this.state.selected : ''}
+                        onChange={e => this.addNewAnswer(e)}
+                      />
+                    </div>
+                  )
+                : (
+                    <div><Link to="/login">Zaloguj się</Link>, by dodać nową odpowiedź.</div>
+                  )
+              }
+            </div>
+            <button type="submit">Zagłosuj</button>
+          </fieldset>
         </form>
       </div>
     );
