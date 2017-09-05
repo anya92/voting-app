@@ -29,11 +29,15 @@ const Results = ({ polls }) => {
               </ul>
               <div className="results__card__summary">
                 <div>
-                  Dodano <u>{ moment(poll.created_At).fromNow() }</u>
+                  Dodano <strong>{ moment(poll.created_At).fromNow() }</strong>
                 </div>
-                <div>
-                  Ostatniej odpowiedzi udzielono <u>{ moment(poll.lastVoted_At).fromNow() }</u>
-                </div>
+                  {
+                    poll.lastVoted_At !== undefined 
+                    ? <div>
+                        Ostatniej odpowiedzi udzielono <strong>{ moment(poll.lastVoted_At).fromNow() }</strong>
+                      </div>
+                    : <div>Nik jeszcze nie zagłosował</div>
+                  }
               </div>
             </div>
           )  

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { updateUser, changeEmail, changePassword } from '../../helpers/user';
 
 class Settings extends Component {
@@ -9,6 +10,7 @@ class Settings extends Component {
       email: '',
       displayName: '',
       photoURL: '',
+      showPhoto: false,
       providedPassword: '',
       newPassword: '',
       successEmail: '',
@@ -51,14 +53,12 @@ class Settings extends Component {
   render() {
     return (
       <div>
-        <div>
-          <h1>Ustawienia</h1>
+        <div className="title">
+          Edytuj profil <hr/>
         </div>
-        <div>
-          <img src={this.state.photoURL} alt={this.state.displayName} />
-        </div>
+        <Link to="/profile">Powrót</Link>
         <div> {/* Update User Profile Form */}
-          <form onSubmit={e => this.updateUser(e)}>
+          <form onSubmit={e => this.updateUser(e)} className="form">
             <fieldset>
               <legend>Twoje dane</legend>
               <div>
@@ -72,19 +72,30 @@ class Settings extends Component {
               </div>
               <div>
                 <label htmlFor="photo">Ustaw lub zmień zdjęcie profilowe</label>
-                <input 
-                  type="text"
-                  name="photo"
-                  value={this.state.photoURL || ''}
-                  onChange={e => this.setState({ photoURL: e.target.value })}
-                />
+                <div className="form__input-with-span">
+                  <input 
+                    type="text"
+                    name="photo"
+                    value={this.state.photoURL || ''}
+                    onChange={e => this.setState({ photoURL: e.target.value })}
+                  />
+                  <span 
+                    className="show-photo" 
+                    onClick={() => this.setState({ showPhoto: true})}>
+                      <i className="fa fa-external-link"></i>
+                  </span>
+                </div>
+                <div className={`form__modal-photo ${this.state.showPhoto ? 'open' : ''}`}>
+                  <img src={this.state.photoURL} alt={this.state.displayName} />
+                  <span onClick={() => this.setState({ showPhoto: false })}>&#x2715;</span>
+                </div> 
               </div>
-              <button type="submit">Zapisz</button>
+              <button type="submit">ZAPISZ</button>
             </fieldset>
           </form>
         </div>
         <div> {/* Change Email Form */}
-          <form onSubmit={e => this.changeEmail(e)}>
+          <form onSubmit={e => this.changeEmail(e)} className="form">
             <fieldset>
               <legend>Zmiana adresu e-mail</legend>
               <div>
@@ -108,12 +119,12 @@ class Settings extends Component {
                   onChange={e => this.setState({ providedPassword: e.target.value })}
                 />
               </div>
-              <button type="submit">Zapisz</button>
+              <button type="submit">ZAPISZ</button>
             </fieldset>
           </form>
         </div>
         <div> {/* Change Password Form */}
-          <form onSubmit={e => this.changePassword(e)}>
+          <form onSubmit={e => this.changePassword(e)} className="form">
             <fieldset>
               <legend>Zmiana hasła</legend>
               <div>
@@ -137,7 +148,7 @@ class Settings extends Component {
                   onChange={e => this.setState({ newPassword: e.target.value })}
                 />
               </div>
-              <button type="submit">Zapisz</button>
+              <button type="submit">ZAPISZ</button>
             </fieldset>
           </form>
         </div>
