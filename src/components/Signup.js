@@ -36,7 +36,7 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <form onSubmit={e => this.signup(e)}>
           <div>
             { this.state.error.message }

@@ -1,0 +1,57 @@
+.singlePoll
+  &__photo
+    max-width: 100%
+    &:not(:empty)
+      height: 250px
+
+    @include desktop
+      &:not(:empty)
+        height: 350px
+
+    img
+      height: 100%
+      width: 100%
+      object-fit: cover
+  
+  &__title
+    width: 100%
+    font-size: 3.5rem
+    font-weight: 700
+    text-align: center
+    margin: 25px 0
+
+  &__aside
+    display: flex
+    align-items: center
+    margin-bottom: 15px
+    border-top: 1px solid #eee
+    border-bottom: 1px solid #eee
+    padding: 15px 0
+    
+    @include tablet
+      width: 250px
+      float: left
+      margin-right: 20px
+      border: none
+    
+    &__photo
+      background-color: #eee
+      width: 60px
+      height: 60px
+      border-radius: 50%
+      img
+        height: 100%
+        width: 100%
+        object-fit: cover 
+
+    &__info
+      margin-left: 10px
+      font-weight: 300
+      &-author
+        font-size: 1.6rem
+        font-weight: 500
+
+  &__main
+    @include tablet
+      width: calc(100% - 270px)
+      float: left

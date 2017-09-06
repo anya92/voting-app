@@ -91,7 +91,7 @@ class Add extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div>
           <div>{this.state.error}</div>
           <form onSubmit={e => this.addNewPoll(e)} className="form">

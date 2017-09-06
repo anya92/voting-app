@@ -14,7 +14,7 @@ class Home extends Component {
     if (this.props.error) return <div>Sorry! There was an error loading the items.</div>
     if (this.props.loading) return <div>Loading...</div>
     return (
-      <div>
+      <div className="container">
         {
           this.props.polls.map(poll => {
             return (

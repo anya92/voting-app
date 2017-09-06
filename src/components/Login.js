@@ -35,7 +35,7 @@ class Login extends Component {
 
   renderResetPassword = () => {
     return (
-      <div>
+      <div className="container">
         <div onClick={() => this.setState({ renderResetPassword: false })}>&#x2715;</div>
         <form onSubmit={e => this.resetPassword(e)}>
           <div>

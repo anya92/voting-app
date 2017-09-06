@@ -52,7 +52,7 @@ class Settings extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <div className="title">
           Edytuj profil <hr/>
         </div>

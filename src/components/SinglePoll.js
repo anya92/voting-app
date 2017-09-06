@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { getSinglePoll } from '../actions';
 import { updatePoll } from '../helpers/polls';
+import formatText from '../helpers/textFormat';
 
 import Chart from './Chart';
 import Vote from './Vote';
@@ -82,25 +83,34 @@ class SinglePoll extends Component {
     if (this.props.loading) return <div>Loading...</div>;
     const { poll } = this.props;
     return !poll ? <div>Loading...</div> : (
-      <div>
-        <div>
+      <div className="singlePoll">
+        <div className="singlePoll__photo">
           { poll.photoURL && <img src={poll.photoURL} alt={poll.title} /> }
         </div>
-        <div className="title">
-          { poll.title } <hr/>
-        </div>
-        <div>
-          <div>{ poll.author.displayName || poll.author.email }</div>
-          <div>{/* poll.author && <img src={poll.author.photoURL} alt={poll.author.displayName || poll.author.email} /> */}</div>
-        </div>
-        <div>{moment(poll.created_At).format('DD MMMM YYYY')}</div>
-        <div>{poll.numberOfVotes} oddanych głosów</div>
-        <div>
-          {
-            !this.state.alreadyVoted
-            ? <Vote poll={poll} user={this.props.user} vote={this.vote} />
-            : <Chart poll={poll} />
-          }
+        <div className="container">
+          <div className="singlePoll__title">
+            { poll.title }
+          </div>
+          <div className="singlePoll__aside">
+            <div className="singlePoll__aside__photo">
+              { poll.author.photoURL && <img src={poll.author.photoURL} alt={poll.author.displayName || poll.author.email} /> }
+            </div>
+            <div className="singlePoll__aside__info">
+              <div className="singlePoll__aside__info-author">
+                { poll.author.displayName || poll.author.email }
+              </div>
+              <div>
+                dodano {moment(poll.created_At).format('DD MMMM YYYY')}
+              </div>
+            </div>
+          </div>
+          <div className="singlePoll__main">
+            {
+              !this.state.alreadyVoted
+              ? <Vote poll={poll} user={this.props.user} vote={this.vote} />
+              : <Chart poll={poll} />
+            }
+          </div>
         </div>
         <div>
           {

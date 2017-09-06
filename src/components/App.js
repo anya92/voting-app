@@ -71,7 +71,7 @@ class App extends Component {
       <Router>
         <div>
           <NavbarComponent user={this.state.user} />
-          <div className="container">
+          <div className="">
             <Switch>
               <Route exact path='/' component={Home} />
               <Route path='/top' component={TopPolls} />

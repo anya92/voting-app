@@ -33,7 +33,7 @@ class Profile extends Component {
   render() {
     const { email, displayName, photoURL } = this.props.user;
     return (
-      <div className="profile">
+      <div className="container profile">
         <div className="profile__header">
           <div className="profile__header__name">
             {displayName || email}
