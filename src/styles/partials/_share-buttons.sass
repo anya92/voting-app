@@ -2,48 +2,58 @@
   position: fixed
   bottom: 20px
   right: 20px
-  img 
-    width: 60px
-    height: 60px
-    cursor: pointer
+
+  @include tablet
+    bottom: 30px
+    right: 30px
+  
+  i.fa
+    font-size: 3.5rem
+    text-shadow: 1px 1px #eee
   
 .share 
   position: relative
+  cursor: pointer
   z-index: 4
   transition: transform 0.3s
+  i.fa
+    -webkit-text-stroke: 2px white
+    font-size: 4rem
   &.turn 
     transform: rotate(180deg)
 
-img.social 
+.social 
+  visibility: hidden
   position: absolute
-  top: 0px
-  left: 0px
 
 @mixin showIcon($name, $left, $top) 
   @keyframes #{$name} 
-    from 
-      left: 0px
-      top: 0px
-      transform: scale(0)  
-    to 
+    0% 
+      transform: scale(0)
+      visibility: hidden
+    50%
+      visibility: hidden    
+    100% 
       left: $left
       top: $top
       transform: scale(1)
+      visibility: visible
 
 @mixin hideIcon($name, $left, $top) 
   @keyframes #{$name} 
-    from 
+    0% 
       left: $left
       top: $top
-      transform: scale(1)    
-    to 
-      left: 0px
-      top: 0px
+      transform: scale(1)
+      visibility: visible  
+    70%
+      visibility: hidden   
+    100% 
       transform: scale(0.5)
   
-$duration: 0.4s
+$duration: 0.5s
 $timing-show: cubic-bezier(0.5, -0.75, 0.7, 2)
-$timing-hide: linear //cubic-bezier(0.5, -0.75, 0.7, 2)
+$timing-hide: cubic-bezier(0.5, -0.75, 0.7, 2)
 $fill-mode: forwards
 
 @mixin animate($name, $delay, $timing-function) 
@@ -57,7 +67,7 @@ $fill-mode: forwards
 $social-list: facebook twitter whatsapp google-plus
 $left-position-list: -120px -104px -60px 0px
 $top-position-list: 0px -60px -104px -120px
-$delay-list: 0s, 0.1s, 0.2s, 0.3s
+$delay-list: 0.1s, 0.2s, 0.3s, 0.4s
 $delay-reverse-list: 0.3s, 0.2s, 0.1s, 0s
 
 @each $social in $social-list 

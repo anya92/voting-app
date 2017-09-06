@@ -8,12 +8,6 @@ const {
   WhatsappShareButton,
 } = ShareButtons;
 
-const FacebookIcon = require('../icons/facebook.svg');
-const TwitterIcon = require('../icons/twitter.svg');
-const WhatsappIcon = require('../icons/whatsapp.png');
-const GooglePlusIcon = require('../icons/google-plus.svg');
-const shareIcon = require('../icons/share.svg');
-
 const shareButton = () => {
   const share = document.querySelector('.share');
   const icons = document.querySelectorAll('.social');
@@ -35,18 +29,20 @@ const shareButton = () => {
 const Share = ({ title }) => {
   return (
     <div className="share-buttons">
-      <img src={shareIcon} alt="share" className="share" onClick={() => shareButton()}/>
+      <div className="share" onClick={() => shareButton()}>
+        <i className="fa fa-share-alt"></i>
+      </div>
       <FacebookShareButton quote={`Oddaj głos w moim głosowaniu! "${title}"`} url={document.URL}>
-        <img src={FacebookIcon} alt="Facebook" className="social facebook"  />
+        <i className="social facebook fa fa-facebook"></i>
       </FacebookShareButton>
       <TwitterShareButton title={`Oddaj głos w moim głosowaniu! "${title}"`} url={document.URL} hashtags={["VApp"]}>
-        <img src={TwitterIcon} alt="Twitter" className="social twitter" />
+        <i className="social twitter fa fa-twitter"></i>
       </TwitterShareButton>  
       <WhatsappShareButton title={`Oddaj głos w moim głosowaniu! "${title}"`} url={document.URL}>
-        <img src={WhatsappIcon} alt="Whatsapp" className="social whatsapp" />
+        <i className="social whatsapp fa fa-whatsapp"></i>
       </WhatsappShareButton> 
       <GooglePlusShareButton url={document.URL}>
-        <img src={GooglePlusIcon} alt="GooglePlus" className="social google-plus" />
+        <i className="social google-plus fa fa-google-plus"></i>
       </GooglePlusShareButton>
     </div>
   );

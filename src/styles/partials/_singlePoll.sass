@@ -24,21 +24,21 @@
     display: flex
     align-items: center
     margin-bottom: 15px
-    border-top: 1px solid #eee
-    border-bottom: 1px solid #eee
-    padding: 15px 0
+    border: 2px solid #eee
+    padding: 10px 5px
     
     @include tablet
       width: 250px
       float: left
       margin-right: 20px
       border: none
-    
+
     &__photo
       background-color: #eee
       width: 60px
       height: 60px
       border-radius: 50%
+      overflow: hidden
       img
         height: 100%
         width: 100%
@@ -55,3 +55,7 @@
     @include tablet
       width: calc(100% - 270px)
       float: left
+
+    &__chart
+      padding: 15px
+      canvas 

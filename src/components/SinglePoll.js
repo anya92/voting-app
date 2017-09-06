@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { getSinglePoll } from '../actions';
 import { updatePoll } from '../helpers/polls';
-import formatText from '../helpers/textFormat';
 
 import Chart from './Chart';
 import Vote from './Vote';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
+import formatText from '../helpers/textFormat';
 
 const backgroundColor = ["#17BEBB", "#EE6352", "#59CD90", "#F7F06D", "#B33F62", "#2274A5"];
 
@@ -50,9 +51,10 @@ class Chart extends Component {
     const options = {
       legend: { display: false },
       responsive: true,
+      fontFamily: 'Roboto',
       title: {
         display: true,
-        text: title
+        text: `${title} (${formatText(this.props.poll.numberOfVotes)})`
       },
       scales: {
         xAxes: [{
@@ -64,12 +66,11 @@ class Chart extends Component {
       }
     };
     return (
-      <div>
+      <div className="singlePoll__main__chart">
         <HorizontalBar
           data={chartData}
           options={options}
-          width={400}
-          height={300}
+          height={200}
         />
       </div>
     );
