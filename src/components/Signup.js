@@ -37,9 +37,10 @@ class Signup extends Component {
   render() {
     return (
       <div className="container">
-        <form onSubmit={e => this.signup(e)}>
-          <div>
-            { this.state.error.message }
+        <h1 className="title">Zarejestruj się</h1>
+        <form onSubmit={e => this.signup(e)} className="form">
+          <div className="message message--error">
+            {this.state.error.message}
           </div>
           <div>
             <label htmlFor="email">Email</label>

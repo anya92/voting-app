@@ -40,7 +40,6 @@ class Vote extends Component {
               {this.state.error}
             </div>
             <div className="form__radio">
-              <div>{this.props.poll.title}</div>
               {
                 Object.keys(answers).map((answer, i) => {
                   return (

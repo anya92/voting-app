@@ -9,7 +9,7 @@
   
   i.fa
     font-size: 3.5rem
-    text-shadow: 1px 1px #eee
+    text-shadow: 1.5px 1px #fff
   
 .share 
   position: relative
@@ -29,6 +29,8 @@
 @mixin showIcon($name, $left, $top) 
   @keyframes #{$name} 
     0% 
+      top: 0px
+      left: 0px
       transform: scale(0)
       visibility: hidden
     50%
@@ -46,10 +48,13 @@
       top: $top
       transform: scale(1)
       visibility: visible  
-    70%
+    50%
       visibility: hidden   
     100% 
+      top: 0px
+      left: 0px
       transform: scale(0.5)
+      visibility: hidden
   
 $duration: 0.5s
 $timing-show: cubic-bezier(0.5, -0.75, 0.7, 2)
@@ -68,7 +73,7 @@ $social-list: facebook twitter whatsapp google-plus
 $left-position-list: -120px -104px -60px 0px
 $top-position-list: 0px -60px -104px -120px
 $delay-list: 0.1s, 0.2s, 0.3s, 0.4s
-$delay-reverse-list: 0.3s, 0.2s, 0.1s, 0s
+$delay-reverse-list: 0.4s, 0.3s, 0.2s, 0.1s
 
 @each $social in $social-list 
   $i: index($social-list, $social)

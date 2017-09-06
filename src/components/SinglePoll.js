@@ -21,7 +21,7 @@ class SinglePoll extends Component {
     };
   }
 
-  componentDidUpdate() {
+  componentWillMount() {
     window.scrollTo(0,0);
   }
   

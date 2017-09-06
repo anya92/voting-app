@@ -35,9 +35,17 @@ class Login extends Component {
 
   renderResetPassword = () => {
     return (
-      <div className="container">
-        <div onClick={() => this.setState({ renderResetPassword: false })}>&#x2715;</div>
-        <form onSubmit={e => this.resetPassword(e)}>
+      <div>
+        <form onSubmit={e => this.resetPassword(e)} className="form">
+          <div className="form__reset-password__close" onClick={() => this.setState({ renderResetPassword: false })}>
+            &#x2715;
+          </div>
+          <div className="message message--success">
+            {this.state.reset.message}
+          </div>
+          <div className="message message--error">
+            {this.state.reset.error}
+          </div>
           <div>
             <label htmlFor="forgot-email">
               Nie pamiętasz hasła? Podaj swój adres e-mail.<br/>
@@ -51,7 +59,6 @@ class Login extends Component {
             />
           </div>
           <button type="submit">Wyślij</button>
-          { this.state.reset.message || this.state.reset.error }
         </form>
       </div>
     );
@@ -59,11 +66,11 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Zaloguj się</h1>
-        <form onSubmit={e => this.signin(e)}>
-          <div>
-            { this.state.error.message }
+      <div className="container">
+        <h1 className="title">Zaloguj się</h1>
+        <form onSubmit={e => this.signin(e)} className="form">
+          <div className="message message--error">
+            {this.state.error.message}
           </div>
           <div>
             <label htmlFor="email">Email</label>
@@ -86,13 +93,16 @@ class Login extends Component {
           <button type="submit">
             Zaloguj się
           </button>
+          <hr/>
         </form>
         {
           this.state.renderResetPassword 
           ? this.renderResetPassword()
-          : <button onClick={() => this.setState({ renderResetPassword: true })}>
-              Zapomniałeś hasła?
-            </button>
+          : <div className="form">
+              <button onClick={() => this.setState({ renderResetPassword: true })}>
+                Zapomniałeś hasła?
+              </button>
+            </div>
         }
       </div>
     );

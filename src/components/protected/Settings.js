@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { updateUser, changeEmail, changePassword } from '../../helpers/user';
 
 class Settings extends Component {
@@ -53,10 +53,9 @@ class Settings extends Component {
   render() {
     return (
       <div className="container">
-        <div className="title">
-          Edytuj profil <hr/>
-        </div>
-        <Link to="/profile">Powrót</Link>
+        <h1 className="title">
+          Edytuj profil
+        </h1>
         <div> {/* Update User Profile Form */}
           <form onSubmit={e => this.updateUser(e)} className="form">
             <fieldset>
@@ -90,7 +89,7 @@ class Settings extends Component {
                   <span onClick={() => this.setState({ showPhoto: false })}>&#x2715;</span>
                 </div> 
               </div>
-              <button type="submit">ZAPISZ</button>
+              <button type="submit">ZAPISZ</button><hr/>
             </fieldset>
           </form>
         </div>
@@ -119,7 +118,7 @@ class Settings extends Component {
                   onChange={e => this.setState({ providedPassword: e.target.value })}
                 />
               </div>
-              <button type="submit">ZAPISZ</button>
+              <button type="submit">ZAPISZ</button><hr/>
             </fieldset>
           </form>
         </div>
