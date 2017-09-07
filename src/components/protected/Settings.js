@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
 import { updateUser, changeEmail, changePassword } from '../../helpers/user';
 
 class Settings extends Component {
@@ -29,7 +28,7 @@ class Settings extends Component {
     e.preventDefault();
 
     const { displayName, photoURL } = this.state;
-    updateUser(displayName, photoURL);
+    updateUser(displayName, photoURL, this.props.history);
   }
 
   changeEmail = e => {
@@ -97,9 +96,11 @@ class Settings extends Component {
           <form onSubmit={e => this.changeEmail(e)} className="form">
             <fieldset>
               <legend>Zmiana adresu e-mail</legend>
-              <div>
-                <div>{this.state.successEmail}</div>
-                <div>{this.state.errorEmail}</div>
+              <div className="message message--success">
+                {this.state.successEmail}
+              </div>
+              <div className="message message--error">
+                {this.state.errorEmail}
               </div>
               <div>
                 <label htmlFor="email">Nowy adres e-mail</label>
@@ -129,8 +130,12 @@ class Settings extends Component {
               <div>
                 By zmienić hasło, podaj obecne hasło, a następnie wpisz nowe.
               </div>
-              <div>{this.state.successPassword}</div>
-              <div>{this.state.errorPassword}</div>
+              <div className="message message--success">
+                {this.state.successPassword}
+              </div>
+              <div className="message message--error">
+                {this.state.errorPassword}
+              </div>
               <div>
                 <label htmlFor="old-password">Obecne hasło</label>
                 <input 

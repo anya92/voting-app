@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Card from '../Card';
 
 const UserPolls = ({ polls, loading, error, deletePoll }) => {
   if (error) return <div>Error</div>;
-  if (loading) return <div className="loading"></div>;
-  if (!polls.length) return <div>Nie masz jeszcze żadnych głosowań. Dodaj nowe!</div>;
+  if (loading) return <div></div>;
+  if (!polls.length) return <div>Nie masz jeszcze żadnych głosowań. <Link to="/add">Dodaj</Link> nowe!</div>;
   return (
     <div>
       {

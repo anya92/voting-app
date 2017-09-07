@@ -14,6 +14,7 @@ import '../styles/styles.css';
 
 import { PrivateRoute, PublicRoute } from '../helpers/routesTypes';
 import NavbarComponent from './NavbarComponent';
+import About from './About';
 import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
@@ -74,6 +75,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path='/top' component={TopPolls} />
+            <Route path='/about' component={About} />
             <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
             <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
             <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />

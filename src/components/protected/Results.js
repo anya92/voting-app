@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import moment from 'moment';
 import formatText from '../../helpers/textFormat';
 
@@ -11,7 +12,7 @@ const Results = ({ polls }) => {
         ? <div>
             W Twoich głosowaniach udzielono {numberOfVotes_aggr} odpowiedzi.
           </div>
-        : <div>Nie masz jeszcze żadnych głosowań. Dodaj nowe!</div>  
+        : <div>Nie masz jeszcze żadnych głosowań. <Link to="/add">Dodaj</Link> nowe!</div>  
       }
       {
         polls.sort((a, b) => b.created_At - a.created_At).map(poll => {

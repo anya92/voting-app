@@ -1,7 +1,7 @@
 import * as firebase from 'firebase';
 import { firebaseApp, userRef } from '../firebase';
 
-export function updateUser(displayName, photoURL) {
+export function updateUser(displayName, photoURL, history) {
   const user = firebaseApp.auth().currentUser;
   user.updateProfile({
     displayName,
@@ -12,7 +12,7 @@ export function updateUser(displayName, photoURL) {
     userRef.child(uid).update({
       displayName,
       photoURL
-    });
+    }).then(() => history.push('/profile'));
   })
 }
 
