@@ -1,6 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+# Voting App
+Free Code Camp's Back End Project 
 
-https://anya92.github.io/voting-app/
+Live: https://anya92.github.io/voting-app/
 
 ## User Stories:
 
@@ -19,3 +20,15 @@ https://anya92.github.io/voting-app/
 7. As an unauthenticated or authenticated user, I can see the results of polls in chart form. (This could be implemented using Chart.js or Google Charts.) ✔
 
 8. As an authenticated user, if I don't like the options on a poll, I can create a new option. ✔
+
+## Built with
+- React
+- Redux
+- Firebase
+- Chart.js
+- Sass
+- Bootstrap
+
+<hr/>
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
