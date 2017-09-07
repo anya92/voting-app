@@ -67,7 +67,7 @@ class App extends Component {
   }
 
   render() {
-    return this.state.loading ? <div>Ładowanie</div> : (
+    return this.state.loading ? <div className="loading"></div> : (
       <Router>
         <div>
           <NavbarComponent user={this.state.user} />

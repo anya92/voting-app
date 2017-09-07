@@ -79,9 +79,9 @@ class SinglePoll extends Component {
 
   render() {
     if (this.props.error) return <div>Sorry! There was an error loading the item.</div>;
-    if (this.props.loading) return <div>Loading...</div>;
+    if (this.props.loading) return <div className="loading"></div>;
     const { poll } = this.props;
-    return !poll ? <div>Loading...</div> : (
+    return !poll ? <div className="loading"></div> : (
       <div className="singlePoll">
         <div className="singlePoll__photo">
           { poll.photoURL && <img src={poll.photoURL} alt={poll.title} /> }
