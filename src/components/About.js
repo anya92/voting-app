@@ -6,11 +6,11 @@ const About = () => {
       <div className="title">O projekcie</div>
       <div className="about__text">
         Free Code Camp's Back End Project: <br/>
-        <a href="https://www.freecodecamp.org/challenges/build-a-voting-app" target="_blank">https://www.freecodecamp.org/challenges/build-a-voting-app</a>
+        <a href="https://www.freecodecamp.org/challenges/build-a-voting-app" target="_blank" rel="noopener noreferrer">https://www.freecodecamp.org/challenges/build-a-voting-app</a>
       </div>
       <div className="about__text">
         Git Repository: <br/>
-        <a href="https://github.com/anya92/voting-app" target="_blank">https://github.com/anya92/voting-app</a>
+        <a href="https://github.com/anya92/voting-app" target="_blank" rel="noopener noreferrer">https://github.com/anya92/voting-app</a>
       </div>
       <div className="about__text">Built with:</div>
       <div className="about__icons">
