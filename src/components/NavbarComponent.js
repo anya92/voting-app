@@ -36,7 +36,7 @@ const NavbarComponent = ({ user }) => {
                     <MenuItem divider />
                     <MenuItem onClick={() => signOut()}>Wyloguj się</MenuItem>
                   </NavDropdown>
-                  <LinkContainer to="/add">
+                  <LinkContainer to="/add" className="special">
                     <NavItem>Dodaj</NavItem>
                   </LinkContainer>
                 </Nav>
@@ -46,7 +46,7 @@ const NavbarComponent = ({ user }) => {
                   <LinkContainer to="/login">
                     <NavItem>Zaloguj się</NavItem>
                   </LinkContainer>
-                  <LinkContainer to="/signup">
+                  <LinkContainer to="/signup" className="special">
                     <NavItem>Zarejestruj się</NavItem>
                   </LinkContainer>
                 </Nav>

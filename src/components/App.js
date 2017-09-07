@@ -71,17 +71,19 @@ class App extends Component {
       <Router>
         <div>
           <NavbarComponent user={this.state.user} />
-          <div className="">
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route path='/top' component={TopPolls} />
-              <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
-              <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
-              <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
-              <PrivateRoute authed={this.state.authed} path="/settings" user={this.state.user} component={Settings} />
-              <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
-              <Route path='/polls/:key' render={({ match }) => <SinglePoll pollKey={match.params.key} user={this.state.user} />} />  
-            </Switch>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route path='/top' component={TopPolls} />
+            <PublicRoute authed={this.state.authed} path="/login" component={Login} />  
+            <PublicRoute authed={this.state.authed} path="/signup" component={Signup} />
+            <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
+            <PrivateRoute authed={this.state.authed} path="/settings" user={this.state.user} component={Settings} />
+            <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
+            <Route path='/polls/:key' render={({ match }) => <SinglePoll pollKey={match.params.key} user={this.state.user} />} />  
+          </Switch>
+          <div className="footer">
+            <p className="footer__text">&#10092; &#10093; with <span className="footer__heart">&#10084;</span> by <a href="https://github.com/anya92" target="_black">anya92</a>
+            </p>
           </div>
         </div>
       </Router>

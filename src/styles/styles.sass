@@ -2,6 +2,7 @@
 @import "partials/mixins"
 @import "partials/navbar"
 @import "partials/loading"
+@import "partials/footer"
 @import "partials/share-buttons" 
 @import "partials/title"
 @import "partials/card"
@@ -11,11 +12,14 @@
 @import "partials/message"
 @import "partials/singlePoll"
 
+html
+  height: 100%
 body
   font-family: 'Roboto'
-  height: 100%
-  padding-top: 50px
+  min-height: 100%
+  padding-top: 72px
   padding-bottom: 50px
+  position: relative
 
 img
   max-width: 100%
