@@ -1,16 +1,16 @@
 {
-  "main.css": "static/css/main.44aaa760.css",
-  "main.css.map": "static/css/main.44aaa760.css.map",
-  "main.js": "static/js/main.bb63d87c.js",
-  "main.js.map": "static/js/main.bb63d87c.js.map",
-  "static\\media\\facebook.svg": "static/media/facebook.c509a4c4.svg",
+  "main.css": "static/css/main.6ffbb510.css",
+  "main.css.map": "static/css/main.6ffbb510.css.map",
+  "main.js": "static/js/main.df1127e0.js",
+  "main.js.map": "static/js/main.df1127e0.js.map",
+  "static\\media\\fontawesome-webfont.eot": "static/media/fontawesome-webfont.674f50d2.eot",
+  "static\\media\\fontawesome-webfont.svg?v=4.7.0": "static/media/fontawesome-webfont.912ec66d.svg",
+  "static\\media\\fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
+  "static\\media\\fontawesome-webfont.woff2?v=4.7.0": "static/media/fontawesome-webfont.af7ae505.woff2",
+  "static\\media\\fontawesome-webfont.woff?v=4.7.0": "static/media/fontawesome-webfont.fee66e71.woff",
   "static\\media\\glyphicons-halflings-regular.eot": "static/media/glyphicons-halflings-regular.f4769f9b.eot",
   "static\\media\\glyphicons-halflings-regular.svg": "static/media/glyphicons-halflings-regular.89889688.svg",
   "static\\media\\glyphicons-halflings-regular.ttf": "static/media/glyphicons-halflings-regular.e18bbf61.ttf",
   "static\\media\\glyphicons-halflings-regular.woff": "static/media/glyphicons-halflings-regular.fa277232.woff",
-  "static\\media\\glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2",
-  "static\\media\\google-plus.svg": "static/media/google-plus.8429afad.svg",
-  "static\\media\\share.svg": "static/media/share.733ab684.svg",
-  "static\\media\\twitter.svg": "static/media/twitter.a57ea219.svg",
-  "static\\media\\whatsapp.png": "static/media/whatsapp.86138162.png"
+  "static\\media\\glyphicons-halflings-regular.woff2": "static/media/glyphicons-halflings-regular.448c34a5.woff2"
 }
