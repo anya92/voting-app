@@ -11,7 +11,7 @@ class Home extends Component {
   }
 
   render() {
-    if (this.props.error) return <div>Sorry! There was an error loading the items.</div>
+    if (this.props.error) return <div className="not-found">Przepraszamy! Wystąpił bład.</div>;
     if (this.props.loading) return <div className="loading"></div>
     return (
       <div className="container">

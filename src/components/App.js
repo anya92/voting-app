@@ -20,6 +20,7 @@ import Signup from './Signup';
 import Home from './Home';
 import SinglePoll from './SinglePoll';
 import TopPolls from './TopPolls';
+import NotFound from './NotFound';
 
 import Profile from './protected/Profile';
 import Settings from './protected/Settings';
@@ -81,7 +82,8 @@ class App extends Component {
             <PrivateRoute authed={this.state.authed} user={this.state.user} path="/profile" component={Profile} />
             <PrivateRoute authed={this.state.authed} path="/settings" user={this.state.user} component={Settings} />
             <PrivateRoute authed={this.state.authed} user={this.state.user} path="/add" component={Add} />
-            <Route path='/polls/:key' render={({ match }) => <SinglePoll pollKey={match.params.key} user={this.state.user} />} />  
+            <Route path='/polls/:key' render={({ match }) => <SinglePoll pollKey={match.params.key} user={this.state.user} />} />
+            <Route component={NotFound} />  
           </Switch>
           <div className="footer">
             <p className="footer__text">&#10092; &#10093; with <span className="footer__heart">&#10084;</span> by <a href="https://github.com/anya92" target="_black">anya92</a>

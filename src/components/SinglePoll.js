@@ -78,7 +78,7 @@ class SinglePoll extends Component {
   }
 
   render() {
-    if (this.props.error) return <div>Sorry! There was an error loading the item.</div>;
+    if (this.props.error) return <div className="not-found">Nie znaleziono głosowania, lub zostało ono usunięte.</div>;
     if (this.props.loading) return <div className="loading"></div>;
     const { poll } = this.props;
     return !poll ? <div className="loading"></div> : (

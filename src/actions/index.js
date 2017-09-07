@@ -40,7 +40,7 @@ export function getAllPolls() {
 export function getSinglePoll(key) {
   return dispatch => {
     dispatch({ type: GET_SINGLE_POLL_LOADING, loading: true });
-
+    dispatch({ type: GET_SINGLE_POLL_ERROR, error: false });
     let singlePoll = {};
     pollRef.child(key).on('value', snap => {
       // when key is invalid
@@ -57,8 +57,8 @@ export function getSinglePoll(key) {
         singlePoll.author = { displayName, photoURL, email, uid };
         
         dispatch({ type: GET_SINGLE_POLL_ERROR, error: false });
-        dispatch({ type: GET_SINGLE_POLL_LOADING, loading: false });
         dispatch({ type: GET_SINGLE_POLL_SUCCESS, singlePoll });
+        dispatch({ type: GET_SINGLE_POLL_LOADING, loading: false });
       }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error: true }));
     }, error => dispatch({ type: GET_SINGLE_POLL_ERROR, error: true }));
   }
